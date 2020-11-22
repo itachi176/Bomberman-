@@ -8,10 +8,10 @@ import javafx.scene.paint.Color;
 import uet.oop.bomberman.graphics.Sprite;
 
 public class Bomber extends Entity {
-    private int speed = Sprite.SCALED_SIZE / 3;
+    private int speed = Sprite.SCALED_SIZE / 4;
 
     public Bomber(int x, int y, Image img) {
-        super(x, y, img);
+        super( x, y, img);
     }
 
     @Override

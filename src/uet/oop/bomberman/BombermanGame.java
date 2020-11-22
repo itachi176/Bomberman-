@@ -27,9 +27,8 @@ public class BombermanGame extends Application {
     
     private GraphicsContext gc;
     private Canvas canvas;
-    private List<Entity> entities = new ArrayList<>();
-    private List<Entity> stillObjects = new ArrayList<>();
 
+    private static List<Entity> entities = new ArrayList<>();
     private static List<Entity> grasses = new ArrayList<>();
     private static List<Entity> walls = new ArrayList<>();
     private static List<Entity> bricks = new ArrayList<>();
@@ -97,24 +96,6 @@ public class BombermanGame extends Application {
         });
     }
 
-    /**
-     * ve map.
-     */
-    public void createMap() {
-        for (int i = 0; i < WIDTH; i++) {
-            for (int j = 0; j < HEIGHT; j++) {
-                Entity object;
-                if (j == 0 || j == HEIGHT - 1 || i == 0 || i == WIDTH - 1) {
-                    object = new Wall(i, j, Sprite.wall.getFxImage());
-                    walls.add(object);
-                }
-                else {
-                    object = new Grass(i, j, Sprite.grass.getFxImage());
-                }
-                stillObjects.add(object);
-            }
-        }
-    }
 
     public void update() {
         entities.forEach(Entity::update);
