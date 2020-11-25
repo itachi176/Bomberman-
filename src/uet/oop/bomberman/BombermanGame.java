@@ -36,7 +36,7 @@ public class BombermanGame extends Application {
     private static List<Ballom> balloms = new ArrayList<>();
     private static List<Oneal> oneals = new ArrayList<>();
 
-    Bomber bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
+    public static Bomber bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
 
     public static void main(String[] args) {
         Application.launch(BombermanGame.class);

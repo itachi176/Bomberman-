@@ -5,10 +5,19 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import uet.oop.bomberman.bomb.Bomb;
 import uet.oop.bomberman.graphics.Sprite;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class Bomber extends Entity {
     private int speed = Sprite.SCALED_SIZE / 4;
+    private int flength = 1;
+    private boolean isAlive = true;
+    private int numboms = 1;
+    public List<Bomb> bombs = new ArrayList<>();
 
     public Bomber(int x, int y, Image img) {
         super( x, y, img);
@@ -77,4 +86,29 @@ public class Bomber extends Entity {
         return false;
     }
 
+    public void setAlive(boolean alive) {
+        isAlive = alive;
+    }
+
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+    public int getFlength() {
+        return flength;
+    }
+
+    public void setFlength(int flength) {
+        this.flength = flength;
+    }
+
+    public void rmvBomb(Bomb x) {
+        Iterator<Bomb> bombIterator = this.bombs.iterator();
+        while (bombIterator.hasNext()) {
+            Bomb bomb = bombIterator.next();
+            if (bomb.getX() == x.getX() && bomb.getY() == x.getY()) {
+                bombIterator.remove();
+            }
+        }
+    }
 }
