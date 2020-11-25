@@ -9,15 +9,14 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import uet.oop.bomberman.bomb.Bomb;
 import uet.oop.bomberman.enemy.Oneal;
 import uet.oop.bomberman.enemy.Ballom;
 import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.graphics.Sprite;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class BombermanGame extends Application {
 
@@ -28,15 +27,8 @@ public class BombermanGame extends Application {
     private GraphicsContext gc;
     private Canvas canvas;
 
-    private static List<Entity> entities = new ArrayList<>();
-    private static List<Entity> grasses = new ArrayList<>();
-    private static List<Entity> walls = new ArrayList<>();
-    private static List<Entity> bricks = new ArrayList<>();
-    private static List<Entity> portals = new ArrayList<>();
-    private static List<Ballom> balloms = new ArrayList<>();
-    private static List<Oneal> oneals = new ArrayList<>();
 
-    public static Bomber bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
+//    public static Bomber bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
 
     public static void main(String[] args) {
         Application.launch(BombermanGame.class);
@@ -72,7 +64,6 @@ public class BombermanGame extends Application {
 
         //createMap();
 
-        entities.add(bomberman);
 
         /**
          * di chuyen.
@@ -81,16 +72,57 @@ public class BombermanGame extends Application {
             @Override
             public void handle(KeyEvent keyEvent) {
                 if (keyEvent.getCode().toString().equals("LEFT")) {
-                    bomberman.goLeft();
+                    EntityArr.bomberman.goLeft();
                 }
                 if (keyEvent.getCode().toString().equals("DOWN")) {
-                    bomberman.goDown();
+                    EntityArr.bomberman.goDown();
                 }
                 if (keyEvent.getCode().toString().equals("UP")) {
-                    bomberman.goUp();
+                    EntityArr.bomberman.goUp();
                 }
                 if (keyEvent.getCode().toString().equals("RIGHT")) {
-                    bomberman.goRight();
+                    EntityArr.bomberman.goRight();
+                }
+                if (keyEvent.getCode().toString().equals("SPACE")) {
+                    Bomb bomb = new Bomb(EntityArr.bomberman.getX() / Sprite.SCALED_SIZE,
+                            EntityArr.bomberman.getY() / Sprite.SCALED_SIZE, Sprite.bomb.getFxImage());
+                    boolean duplicate = false;
+                    for (Bomb b : EntityArr.bomberman.bombs) {
+                        if (b.getX() == bomb.getX() && b.getY() == bomb.getY()) {
+                            duplicate = true;
+                            break;
+                        }
+                    }
+                    TimerTask task = new TimerTask() {
+                        @Override
+                        public void run() {
+                            bomb.setImg(Sprite.bomb_exploded.getFxImage());
+                            bomb.setExploded(true);
+                            bomb.addFlame();
+                        }
+                    };
+                    TimerTask task1 = new TimerTask() {
+                        @Override
+                        public void run() {
+                            Iterator<Brick> brickIterator = EntityArr.bricks.listIterator();
+                            while (brickIterator.hasNext()) {
+                                Brick brick = brickIterator.next();
+                                if (brick.isBroken()) {
+                                    brickIterator.remove();
+                                }
+                            }
+                            EntityArr.bomberman.removeBomb(bomb);
+                            EntityArr.removeEnemy();
+                        }
+                    };
+                    if (!duplicate && EntityArr.bomberman.getNumBombs() >= EntityArr.bomberman.bombs.size() + 1) {
+                        EntityArr.bomberman.bombs.add(bomb);
+                        Timer timerEx = new Timer();
+                        timerEx.schedule(task, 2000);
+                        Timer timerRev = new Timer();
+                        timerRev.schedule(task1, 3000L);
+                    }
+
                 }
             }
         });
@@ -98,23 +130,29 @@ public class BombermanGame extends Application {
 
 
     public void update() {
-        entities.forEach(Entity::update);
-        balloms.forEach(Ballom::update);
-        oneals.forEach(Oneal::update);
-        //bomberman.bombs.forEach(Bomb::update);
+        EntityArr.bombers.forEach(Entity::update);
+        EntityArr.balloms.forEach(Ballom::update);
+        EntityArr.oneals.forEach(Oneal::update);
+        EntityArr.bomberman.bombs.forEach(Bomb::update);
+        EntityArr.bricks.forEach(Brick::update);
+        // update flame
+        EntityArr.bomberman.bombs.forEach(g -> g.getfUp().forEach(g1 -> g1.update()));
+        EntityArr.bomberman.bombs.forEach(g -> g.getfDown().forEach(g1 -> g1.update()));
+        EntityArr.bomberman.bombs.forEach(g -> g.getfLeft().forEach(g1 -> g1.update()));
+        EntityArr.bomberman.bombs.forEach(g -> g.getfRight().forEach(g1 -> g1.update()));
     }
 
     public void render() {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        grasses.forEach(g -> g.render(gc));
-        walls.forEach(g -> g.render(gc));
-        bricks.forEach(g -> g.render(gc));
-        portals.forEach(g -> g.render(gc));
-        balloms.forEach(g -> g.render(gc));
-        oneals.forEach(g -> g.render(gc));
-        //bomberman.bombs.forEach(g -> g.render(gc));
-        entities.forEach(g -> g.render(gc));
-       // Bomb.flames.forEach(g -> g.render(gc));
+        EntityArr.grasses.forEach(g -> g.render(gc));
+        EntityArr.walls.forEach(g -> g.render(gc));
+        EntityArr.bricks.forEach(g -> g.render(gc));
+        EntityArr.portals.forEach(g -> g.render(gc));
+        EntityArr.balloms.forEach(g -> g.render(gc));
+        EntityArr.oneals.forEach(g -> g.render(gc));
+        EntityArr.bomberman.bombs.forEach(g -> g.render(gc));
+        EntityArr.bombers.forEach(g -> g.render(gc));
+        EntityArr.bomberman.bombs.forEach(g -> g.flames.forEach(g1 -> g1.render(gc)));
     }
 
     public static List<Entity> getBricks() {

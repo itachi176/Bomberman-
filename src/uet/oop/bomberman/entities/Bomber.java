@@ -1,10 +1,6 @@
 package uet.oop.bomberman.entities;
 
-import javafx.scene.SnapshotParameters;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
 import uet.oop.bomberman.bomb.Bomb;
 import uet.oop.bomberman.graphics.Sprite;
 
@@ -14,9 +10,9 @@ import java.util.List;
 
 public class Bomber extends Entity {
     private int speed = Sprite.SCALED_SIZE / 4;
-    private int flength = 1;
+    private int flameLength = 1;
     private boolean isAlive = true;
-    private int numboms = 1;
+    private int numBombs = 1;
     public List<Bomb> bombs = new ArrayList<>();
 
     public Bomber(int x, int y, Image img) {
@@ -94,15 +90,23 @@ public class Bomber extends Entity {
         return isAlive;
     }
 
-    public int getFlength() {
-        return flength;
+    public int getNumBombs() {
+        return numBombs;
     }
 
-    public void setFlength(int flength) {
-        this.flength = flength;
+    public void setNumBombs(int numBombs) {
+        this.numBombs = numBombs;
     }
 
-    public void rmvBomb(Bomb x) {
+    public int getFlameLength() {
+        return flameLength;
+    }
+
+    public void setFlameLength(int flameLength) {
+        this.flameLength = flameLength;
+    }
+
+    public void removeBomb(Bomb x) {
         Iterator<Bomb> bombIterator = this.bombs.iterator();
         while (bombIterator.hasNext()) {
             Bomb bomb = bombIterator.next();

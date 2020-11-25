@@ -34,6 +34,7 @@ public abstract class Entity {
         this.x = xUnit * Sprite.SCALED_SIZE;
         this.y = yUnit * Sprite.SCALED_SIZE;
         this.img = img;
+        this.animate = this.x;
     }
 
     public Image getImg() {

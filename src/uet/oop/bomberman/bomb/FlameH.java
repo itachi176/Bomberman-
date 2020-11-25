@@ -2,9 +2,9 @@ package uet.oop.bomberman.bomb;
 
 import javafx.scene.image.Image;
 
-public class flame_v extends flame {
+public class FlameH extends Flame {
 
-    public flame_v(int xUnit, int yUnit, Image img) {
+    public FlameH(int xUnit, int yUnit, Image img) {
         super(xUnit, yUnit, img);
     }
     @Override

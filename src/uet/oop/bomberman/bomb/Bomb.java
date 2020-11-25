@@ -3,26 +3,27 @@ package uet.oop.bomberman.bomb;
 import javafx.scene.image.Image;
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.entities.EntityArr;
 import uet.oop.bomberman.graphics.Sprite;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Bomb extends Entity {
-    private int fLength;
+    private int flameLength;
     private boolean isExploded = false;
-    private List<flame> fLeft = new ArrayList<>();
-    private List<flame> fRight = new ArrayList<>();
-    private List<flame> fUp = new ArrayList<>();
-    private List<flame> fDown = new ArrayList<>();
-    private List<flame> flames = new ArrayList<>();
+    private List<Flame> fLeft = new ArrayList<>();
+    private List<Flame> fRight = new ArrayList<>();
+    private List<Flame> fUp = new ArrayList<>();
+    private List<Flame> fDown = new ArrayList<>();
+    private List<Flame> Flames = new ArrayList<>();
     public Bomb(int xUnit, int yUnit, Image img) {
         super(xUnit, yUnit, img);
     }
 
     @Override
     public void update() {
-        fLength = BombermanGame.bomberman.getFlength();
+        flameLength = EntityArr.bomberman.getFlameLength();
         if (this.isExploded()) {
             this.animate = this.animate + Sprite.DEFAULT_SIZE / 10;
             this.setImg(Sprite.movingSprite(Sprite.bomb_exploded, Sprite.bomb_exploded1
@@ -40,38 +41,77 @@ public class Bomb extends Entity {
     }
 
     public int getfLength() {
-        return fLength;
+        return flameLength;
     }
 
     public void setExploded(boolean exploded) {
         isExploded = exploded;
     }
 
-    public List<flame> getfDown() {
+    public List<Flame> getfDown() {
         return fDown;
     }
 
-    public List<flame> getFlames() {
-        return flames;
+    public List<Flame> getFlames() {
+        return Flames;
     }
 
-    public List<flame> getfLeft() {
+    public List<Flame> getfLeft() {
         return fLeft;
     }
 
-    public List<flame> getfRight() {
+    public List<Flame> getfRight() {
         return fRight;
     }
 
-    public List<flame> getfUp() {
+    public List<Flame> getfUp() {
         return fUp;
     }
 
-    public void add_flame() {
-        flame flame;
-        for (int i = 0; i < fLength; i++) {
-            flame = new flame_v(getX() / Sprite.DEFAULT_SIZE, getY() / Sprite.DEFAULT_SIZE + 1 + i
+    public void addFlame() {
+        Flame flame;
+        for (int i = 0; i < flameLength; ++i) {
+            flame = new FlameV(getX() / Sprite.SCALED_SIZE, getY() / Sprite.SCALED_SIZE + 1 + i
                     , Sprite.explosion_vertical.getFxImage());
+            if (!flame.checkBrick() && !flame.checkWall()) {
+                fDown.add(flame);
+                this.Flames.add(flame);
+            } else {
+                break;
+            }
+        }
+
+        for (int i = 0; i < flameLength; ++i) {
+            flame = new FlameV(getX() / Sprite.SCALED_SIZE, getY() / Sprite.SCALED_SIZE - 1 - i
+                    , Sprite.explosion_vertical.getFxImage());
+            if (!flame.checkBrick() && !flame.checkWall()) {
+                fUp.add(flame);
+                this.Flames.add(flame);
+            } else {
+                break;
+            }
+        }
+
+        for (int i = 0; i < flameLength; ++i) {
+            flame = new FlameH(getX() / Sprite.SCALED_SIZE + i + 1, getY() / Sprite.SCALED_SIZE
+                    , Sprite.explosion_horizontal.getFxImage());
+            if (!flame.checkBrick() && !flame.checkWall()) {
+                fRight.add(flame);
+                this.Flames.add(flame);
+            } else {
+                break;
+            }
+        }
+
+        for (int i = 0; i < flameLength; ++i) {
+            flame = new FlameH(getX() / Sprite.SCALED_SIZE - i - 1, getY() / Sprite.SCALED_SIZE
+                    , Sprite.explosion_horizontal.getFxImage());
+            if (!flame.checkBrick() && !flame.checkWall()) {
+                fLeft.add(flame);
+                this.Flames.add(flame);
+            } else {
+                break;
+            }
         }
     }
 }
