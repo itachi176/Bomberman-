@@ -21,7 +21,10 @@ public class Bomber extends Entity {
 
     @Override
     public void update() {
-
+        if (!isAlive()){
+            this.setImg(Sprite.movingSprite(Sprite.player_dead1, Sprite.player_dead2
+                    , Sprite.player_dead3, animate, Sprite.DEFAULT_SIZE).getFxImage());
+        }
     }
 
     public void goLeft() {

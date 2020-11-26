@@ -69,10 +69,17 @@ public class Bomb extends Entity {
 
     public void addFlame() {
         Flame flame;
+
+        flame = new FlameV(getX() / Sprite.SCALED_SIZE, getY() / Sprite.SCALED_SIZE
+                , Sprite.explosion_vertical.getFxImage());
+        flame.checkEnemy();
+        flame.checkPlayer();
+
         for (int i = 0; i < flameLength; ++i) {
             flame = new FlameV(getX() / Sprite.SCALED_SIZE, getY() / Sprite.SCALED_SIZE + 1 + i
                     , Sprite.explosion_vertical.getFxImage());
             flame.checkEnemy();
+            flame.checkPlayer();
             if (!flame.checkBrick() && !flame.checkWall()) {
                 fDown.add(flame);
                 this.flames.add(flame);
@@ -85,6 +92,7 @@ public class Bomb extends Entity {
             flame = new FlameV(getX() / Sprite.SCALED_SIZE, getY() / Sprite.SCALED_SIZE - 1 - i
                     , Sprite.explosion_vertical.getFxImage());
             flame.checkEnemy();
+            flame.checkPlayer();
             if (!flame.checkBrick() && !flame.checkWall()) {
                 fUp.add(flame);
                 this.flames.add(flame);
@@ -97,6 +105,7 @@ public class Bomb extends Entity {
             flame = new FlameH(getX() / Sprite.SCALED_SIZE + i + 1, getY() / Sprite.SCALED_SIZE
                     , Sprite.explosion_horizontal.getFxImage());
             flame.checkEnemy();
+            flame.checkPlayer();
             if (!flame.checkBrick() && !flame.checkWall()) {
                 fRight.add(flame);
                 this.flames.add(flame);
@@ -109,6 +118,7 @@ public class Bomb extends Entity {
             flame = new FlameH(getX() / Sprite.SCALED_SIZE - i - 1, getY() / Sprite.SCALED_SIZE
                     , Sprite.explosion_horizontal.getFxImage());
             flame.checkEnemy();
+            flame.checkPlayer();
             if (!flame.checkBrick() && !flame.checkWall()) {
                 fLeft.add(flame);
                 this.flames.add(flame);

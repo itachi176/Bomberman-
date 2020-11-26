@@ -57,4 +57,10 @@ public abstract class Flame extends Entity {
             }
         }
     }
+
+    protected  void checkPlayer() {
+        if (this.getX() == EntityArr.bomberman.getX() && this.getY() == EntityArr.bomberman.getY()){
+            EntityArr.bomberman.setAlive(false);
+        }
+    }
 }
