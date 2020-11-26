@@ -15,7 +15,9 @@ import uet.oop.bomberman.enemy.Ballom;
 import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.graphics.Sprite;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.util.*;
 
 public class BombermanGame extends Application {
@@ -155,83 +157,62 @@ public class BombermanGame extends Application {
         EntityArr.bomberman.bombs.forEach(g -> g.flames.forEach(g1 -> g1.render(gc)));
     }
 
-    public static List<Entity> getBricks() {
-        return bricks;
-    }
-
-    public List<Entity> getEntities() {
-        return entities;
-    }
-
-    public static List<Entity> getGrasses() {
-        return grasses;
-    }
-
-    public static List<Entity> getWalls() {
-        return walls;
-    }
-
-    public static List<Entity> getPortals() {
-        return portals;
-    }
 
     public void createMapByLevel(int level) {
 
+        EntityArr.bombers.add(EntityArr.bomberman);
         try {
             String path = "res/levels/Level" + level + ".txt";
             File file = new File(path);
-            Scanner sc = new Scanner(file);
-            level = sc.nextInt();
-            HEIGHT = sc.nextInt();
-            WIDTH = sc.nextInt();
+            FileReader fileReader = new FileReader(file);
+            BufferedReader buffReader = new BufferedReader(fileReader);
+            String line = buffReader.readLine().trim();
+            String[] str = line.split(" ");
+            BombermanGame.HEIGHT = Integer.parseInt(str[1]);
+            BombermanGame.WIDTH = Integer.parseInt(str[2]);
+            char [][] maps = new char[BombermanGame.HEIGHT][BombermanGame.WIDTH];
 
-            char [][] maps = new char[HEIGHT][WIDTH];
-
-            sc.nextLine();
-
-            for (int i = 0; i < HEIGHT; ++i) {
-                String line = sc.nextLine();
-                for (int j = 0; j < WIDTH; ++j) {
+            for (int i = 0; i < BombermanGame.HEIGHT; ++i) {
+                line = buffReader.readLine();
+                for (int j = 0; j < BombermanGame.WIDTH; ++j) {
                     maps[i][j] = line.charAt(j);
                 }
             }
 
-            for (int i = 0; i < WIDTH; i++) {
-                for (int j = 0 ; j < HEIGHT; j++) {
+            for (int i = 0; i < BombermanGame.WIDTH; ++i) {
+                for (int j = 0 ; j < BombermanGame.HEIGHT; ++j) {
+                    Brick brick;
                     Entity object;
-                    Ballom balloom;
+                    Ballom ballom;
                     Oneal oneal;
                     // create wall and grass
-                    if (j == 0 || j == HEIGHT - 1 || i == 0 || i == WIDTH - 1 || maps[j][i] == '#') {
+                    if (j == 0 || j == BombermanGame.HEIGHT - 1 || i == 0 || i == BombermanGame.WIDTH - 1 || maps[j][i] == '#') {
                         object = new Wall(i, j, Sprite.wall.getFxImage());
-                        walls.add(object);
+                        EntityArr.walls.add(object);
                     } else {
                         object = new Grass(i, j, Sprite.grass.getFxImage());
-
-                        grasses.add(object);
+                        EntityArr.grasses.add(object);
                     }
                     // create portal
                     if (maps[j][i] == 'x') {
                         object = new Portal(i, j, Sprite.portal.getFxImage());
-                        grasses.add(object);
+                        EntityArr.grasses.add(object);
                     }
-                     //create brick
+                    // create brick
                     if (maps[j][i] == 'x' || maps[j][i] == '*') {
-                        object = new Brick(i, j, Sprite.brick.getFxImage());
-                        bricks.add(object);
+                        brick = new Brick(i, j, Sprite.brick.getFxImage());
+                        EntityArr.bricks.add(brick);
                     } else if (maps[j][i] == '1') {
-                        balloom = new Ballom(i, j, Sprite.balloom_left1.getFxImage());
-                        balloms.add(balloom);
+                        ballom = new Ballom(i, j, Sprite.balloom_left1.getFxImage());
+                        EntityArr.balloms.add(ballom);
                     } else if (maps[j][i] == '2') {
                         oneal = new Oneal(i, j, Sprite.oneal_right1.getFxImage());
-                        oneals.add(oneal);
+                        EntityArr.oneals.add(oneal);
                     }
                 }
             }
-            System.out.println(walls.size());
-            System.out.println(grasses.size());
-            System.out.println(bricks.size());
-            sc.close();
+            fileReader.close();
+            buffReader.close();
         } catch (Exception exception) {
             System.out.println("Error: " + exception);
         }

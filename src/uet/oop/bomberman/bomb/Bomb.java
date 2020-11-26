@@ -1,7 +1,6 @@
 package uet.oop.bomberman.bomb;
 
 import javafx.scene.image.Image;
-import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.EntityArr;
 import uet.oop.bomberman.graphics.Sprite;
@@ -16,7 +15,7 @@ public class Bomb extends Entity {
     private List<Flame> fRight = new ArrayList<>();
     private List<Flame> fUp = new ArrayList<>();
     private List<Flame> fDown = new ArrayList<>();
-    private List<Flame> Flames = new ArrayList<>();
+    public List<Flame> flames = new ArrayList<>();
     public Bomb(int xUnit, int yUnit, Image img) {
         super(xUnit, yUnit, img);
     }
@@ -53,7 +52,7 @@ public class Bomb extends Entity {
     }
 
     public List<Flame> getFlames() {
-        return Flames;
+        return flames;
     }
 
     public List<Flame> getfLeft() {
@@ -75,7 +74,7 @@ public class Bomb extends Entity {
                     , Sprite.explosion_vertical.getFxImage());
             if (!flame.checkBrick() && !flame.checkWall()) {
                 fDown.add(flame);
-                this.Flames.add(flame);
+                this.flames.add(flame);
             } else {
                 break;
             }
@@ -86,7 +85,7 @@ public class Bomb extends Entity {
                     , Sprite.explosion_vertical.getFxImage());
             if (!flame.checkBrick() && !flame.checkWall()) {
                 fUp.add(flame);
-                this.Flames.add(flame);
+                this.flames.add(flame);
             } else {
                 break;
             }
@@ -97,7 +96,7 @@ public class Bomb extends Entity {
                     , Sprite.explosion_horizontal.getFxImage());
             if (!flame.checkBrick() && !flame.checkWall()) {
                 fRight.add(flame);
-                this.Flames.add(flame);
+                this.flames.add(flame);
             } else {
                 break;
             }
@@ -108,7 +107,7 @@ public class Bomb extends Entity {
                     , Sprite.explosion_horizontal.getFxImage());
             if (!flame.checkBrick() && !flame.checkWall()) {
                 fLeft.add(flame);
-                this.Flames.add(flame);
+                this.flames.add(flame);
             } else {
                 break;
             }

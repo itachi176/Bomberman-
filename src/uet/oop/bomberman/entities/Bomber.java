@@ -68,20 +68,6 @@ public class Bomber extends Entity {
         this.speed = speed;
     }
 
-    /**
-     * xu ly gioi han di chuyen khi gap vat can.
-     */
-    public boolean checkBounds() {
-        for (Entity e : walls) {
-            if (this.intersects(e)) return true;
-        }
-
-        for (Entity e : bricks) {
-            if (this.intersects(e)) return true;
-        }
-        return false;
-    }
-
     public void setAlive(boolean alive) {
         isAlive = alive;
     }

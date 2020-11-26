@@ -15,10 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Entity {
-    protected static List<Entity> walls = BombermanGame.getWalls();
-    protected static List<Entity> bricks = BombermanGame.getBricks();
-    protected static List<Entity> portals = BombermanGame.getPortals();
-
     //Tọa độ X tính từ góc trái trên trong Canvas
     protected int x;
 
@@ -69,11 +65,11 @@ public abstract class Entity {
     }
 
     public boolean checkBounds() {
-        for (Entity e : walls) {
+        for (Entity e : EntityArr.walls) {
             if (this.intersects(e)) return true;
         }
 
-        for (Entity e : bricks) {
+        for (Entity e : EntityArr.bricks) {
             if (this.intersects(e)) return true;
         }
         return false;
