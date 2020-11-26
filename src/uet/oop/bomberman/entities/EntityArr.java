@@ -1,5 +1,6 @@
 package uet.oop.bomberman.entities;
 
+import uet.oop.bomberman.bomb.Bomb;
 import uet.oop.bomberman.entities.Brick;
 import uet.oop.bomberman.enemy.Ballom;
 import uet.oop.bomberman.enemy.Oneal;
@@ -17,6 +18,7 @@ public class EntityArr {
     public static List<Entity> portals = new ArrayList<>();
     public static List<Ballom> balloms = new ArrayList<>();
     public static List<Oneal> oneals = new ArrayList<>();
+    public static List<Bomb> bombs = new ArrayList<>();
 //    public static List<Item> items = new ArrayList<>();
     public static Bomber bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
 //    public static List<Flame> flames = new ArrayList<>();

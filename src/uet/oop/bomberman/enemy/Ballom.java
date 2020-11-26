@@ -11,7 +11,7 @@ public class Ballom extends enemy {
     @Override
     public void update() {
         if (isAlive()) {
-            if (checkBounds()) {
+            if (checkBounds_bom()) {
                 this.setSpeed(getSpeed() * -1);
             }
             if (this.getSpeed() > 0) {
