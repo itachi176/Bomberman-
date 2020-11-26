@@ -67,10 +67,6 @@ public class BombermanGame extends Application {
 
         //createMap();
 
-
-        /**
-         * di chuyen.
-         */
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent keyEvent) {
@@ -114,8 +110,22 @@ public class BombermanGame extends Application {
                                     brickIterator.remove();
                                 }
                             }
+                            Iterator<Ballom> ballomIterator = EntityArr.balloms.listIterator();
+                            while (ballomIterator.hasNext()) {
+                                Ballom ballom = ballomIterator.next();
+                                if (!ballom.isAlive()) {
+                                    ballomIterator.remove();
+                                }
+                            }
+                            Iterator<Oneal> onealIterator = EntityArr.oneals.listIterator();
+                            while (onealIterator.hasNext()) {
+                                Oneal oneal = onealIterator.next();
+                                if (!oneal.isAlive()) {
+                                    onealIterator.remove();
+                                }
+                            }
                             EntityArr.bomberman.removeBomb(bomb);
-                            EntityArr.removeEnemy();
+//                            EntityArr.removeEnemy();
                         }
                     };
                     if (!duplicate && EntityArr.bomberman.getNumBombs() >= EntityArr.bomberman.bombs.size() + 1) {

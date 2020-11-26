@@ -23,7 +23,8 @@ public class Ballom extends enemy {
                 this.img = Sprite.movingSprite(Sprite.balloom_left1, Sprite.balloom_left2
                         , Sprite.balloom_left3, this.x, Sprite.DEFAULT_SIZE).getFxImage();
             }
-        } else {
+        }
+        else {
             this.img = Sprite.balloom_dead.getFxImage();
         }
     }

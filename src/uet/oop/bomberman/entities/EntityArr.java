@@ -22,15 +22,15 @@ public class EntityArr {
 //    public static List<Flame> flames = new ArrayList<>();
 
     public static void removeEnemy() {
-        Iterator<Ballom> balloomIterator = balloms.listIterator();
+        Iterator<Ballom> ballomIterator = balloms.listIterator();
         Iterator<Oneal> onealIterator = oneals.listIterator();
-        while (balloomIterator.hasNext()) {
-            Ballom balloom = balloomIterator.next();
-            if (!balloom.isAlive()) balloomIterator.remove();
+        while (ballomIterator.hasNext()) {
+            Ballom ballom = ballomIterator.next();
+            if (!ballom.isAlive()) ballomIterator.remove();
         }
         while (onealIterator.hasNext()) {
             Oneal oneal = onealIterator.next();
-            if (!oneal.isAlive()) balloomIterator.remove();
+            if (!oneal.isAlive()) ballomIterator.remove();
         }
     }
 }
