@@ -43,7 +43,12 @@ public abstract class Flame extends Entity {
     }
 
     protected void checkEnemy() {
-        for (Enemy e : EntityArr.enemies) {
+        for (Enemy e : EntityArr.balloms) {
+            if (this.intersects(e)) {
+                e.setAlive(false);
+            }
+        }
+        for (Enemy e : EntityArr.oneals) {
             if (this.intersects(e)) {
                 e.setAlive(false);
             }

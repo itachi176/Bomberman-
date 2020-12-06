@@ -7,9 +7,11 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import uet.oop.bomberman.bomb.Bomb;
+import uet.oop.bomberman.enemy.Enemy;
 import uet.oop.bomberman.enemy.Oneal;
 import uet.oop.bomberman.enemy.Ballom;
 import uet.oop.bomberman.entities.*;
@@ -82,7 +84,12 @@ public class BombermanGame extends Application {
                 }
                 if (keyEvent.getCode().toString().equals("SPACE")) {
                     EntityArr.bomberman.putBomb();
-
+                }
+                if (keyEvent.getCode() == KeyCode.B) {
+                    EntityArr.balloms.clear();
+                }
+                if (keyEvent.getCode() == KeyCode.O) {
+                    EntityArr.oneals.clear();
                 }
             }
         });
@@ -103,6 +110,11 @@ public class BombermanGame extends Application {
         EntityArr.items.forEach(g -> {
             if (g.isVisible()) g.update();
         });
+
+        EntityArr.bomberman.update();
+        EntityArr.enemies.forEach(Enemy::update);
+
+        EntityArr.portals.forEach(g -> g.update());
     }
 
     public void render() {
@@ -122,5 +134,6 @@ public class BombermanGame extends Application {
         EntityArr.items.forEach(g -> {
             if (g.isVisible()) g.render(gc);
         });
+
     }
 }

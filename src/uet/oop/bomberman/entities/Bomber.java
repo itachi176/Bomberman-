@@ -29,16 +29,18 @@ public class Bomber extends Entity {
                     , Sprite.player_dead3, animate, Sprite.DEFAULT_SIZE).getFxImage());
         }
         if (checkPortal()) {
+            System.out.println("OK");
             if (this.time == 0) {
                 this.time++;
                 BombermanGame.level++;
+                System.out.println(BombermanGame.level);
                 CreateMap.createMapByLevel(BombermanGame.level);
             }
         }
     }
     public boolean checkPortal() {
         for (Entity portal : EntityArr.portals) {
-            if (EntityArr.enemies.size() != 0) break;
+            if (EntityArr.balloms.size() != 0 || EntityArr.oneals.size() != 0) break;
             if (this.intersects(portal)) {
                 return true;
             }
