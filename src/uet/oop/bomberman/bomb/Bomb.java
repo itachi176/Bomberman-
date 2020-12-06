@@ -7,10 +7,13 @@ import uet.oop.bomberman.graphics.Sprite;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Bomb extends Entity {
     private int flameLength;
     private boolean isExploded = false;
+    public int timeerEx = 0;
     private List<Flame> fLeft = new ArrayList<>();
     private List<Flame> fRight = new ArrayList<>();
     private List<Flame> fUp = new ArrayList<>();
@@ -27,8 +30,16 @@ public class Bomb extends Entity {
             this.animate = this.animate + Sprite.DEFAULT_SIZE / 10;
             this.setImg(Sprite.movingSprite(Sprite.bomb_exploded, Sprite.bomb_exploded1
                     , Sprite.bomb_exploded2, animate, Sprite.DEFAULT_SIZE).getFxImage());
+            if (this.timeerEx == 1) {
+                this.timeerEx++;
+                this.addFlame();
+            }
         }
         else {
+            if (this.timeerEx == 0) {
+                this.timeerEx++;
+                setTimeExploded();
+            }
             this.animate = this.animate + Sprite.DEFAULT_SIZE / 10;
             this.setImg(Sprite.movingSprite(Sprite.bomb, Sprite.bomb_1
                     , Sprite.bomb_2, animate, Sprite.DEFAULT_SIZE).getFxImage());
@@ -126,5 +137,29 @@ public class Bomb extends Entity {
                 break;
             }
         }
+    }
+
+    public void setTimeExploded() {
+        Bomb bomb = this;
+        TimerTask bombEx = new TimerTask() {
+            @Override
+            public void run() {
+                bomb.setExploded(true);
+            }
+        };
+        if (!this.isExploded()) {
+            Timer timerEx = new Timer();
+            timerEx.schedule(bombEx, 2000);
+        }
+        TimerTask removeFlame = new TimerTask() {
+            @Override
+            public void run() {
+                EntityArr.removeBrick();
+                EntityArr.removeBomb();
+                EntityArr.removeEnemy();
+            }
+        };
+        Timer timer = new Timer();
+        timer.schedule(removeFlame, 2500L);
     }
 }

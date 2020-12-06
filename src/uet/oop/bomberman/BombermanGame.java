@@ -126,7 +126,6 @@ public class BombermanGame extends Application {
                         Timer timerRev = new Timer();
                         timerRev.schedule(task1, 3000L);
                     }
-
                 }
             }
         });
@@ -144,6 +143,9 @@ public class BombermanGame extends Application {
         EntityArr.bomberman.bombs.forEach(g -> g.getfDown().forEach(g1 -> g1.update()));
         EntityArr.bomberman.bombs.forEach(g -> g.getfLeft().forEach(g1 -> g1.update()));
         EntityArr.bomberman.bombs.forEach(g -> g.getfRight().forEach(g1 -> g1.update()));
+        EntityArr.items.forEach(g -> {
+            if (g.isVisible()) g.update();
+        });
     }
 
     public void render() {
@@ -157,10 +159,11 @@ public class BombermanGame extends Application {
         EntityArr.bomberman.bombs.forEach(g -> g.render(gc));
         EntityArr.bombers.forEach(g -> g.render(gc));
         EntityArr.bomberman.bombs.forEach(g -> g.flames.forEach(g1 -> g1.render(gc)));
+        EntityArr.enemies.forEach(g -> {
+            if (g.isVisible()) g.render(gc);
+        });
+        EntityArr.items.forEach(g -> {
+            if (g.isVisible()) g.render(gc);
+        });
     }
-
-
-
-
-
 }

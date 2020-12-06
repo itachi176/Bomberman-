@@ -25,6 +25,8 @@ public abstract class Entity {
 
     protected int animate;
 
+    protected  boolean isVisible = true;
+
     //Khởi tạo đối tượng, chuyển từ tọa độ đơn vị sang tọa độ trong canvas
     public Entity( int xUnit, int yUnit, Image img) {
         this.x = xUnit * Sprite.SCALED_SIZE;
@@ -47,6 +49,10 @@ public abstract class Entity {
 
     public int getY() {
         return y;
+    }
+
+    public boolean isVisible() {
+        return isVisible;
     }
 
     public void render(GraphicsContext gc) {
@@ -90,4 +96,7 @@ public abstract class Entity {
         return false;
     }
 
+    public void setVisible(boolean visible) {
+        isVisible = visible;
+    }
 }

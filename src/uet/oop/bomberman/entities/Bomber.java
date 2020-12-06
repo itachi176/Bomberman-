@@ -13,6 +13,7 @@ public class Bomber extends Entity {
     private int flameLength = 1;
     private boolean isAlive = true;
     private int numBombs = 1;
+
     public List<Bomb> bombs = new ArrayList<>();
 
     public Bomber(int x, int y, Image img) {
@@ -104,4 +105,5 @@ public class Bomber extends Entity {
             }
         }
     }
+
 }
