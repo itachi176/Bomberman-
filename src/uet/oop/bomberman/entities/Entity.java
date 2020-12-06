@@ -70,21 +70,6 @@ public abstract class Entity {
         return s.getBoundary().intersects(this.getBoundary());
     }
 
-    public boolean checkBounds_bom() {
-        for (Entity e : EntityArr.walls) {
-            if (this.intersects(e)) return true;
-        }
-
-        for (Entity e : EntityArr.bricks) {
-            if (this.intersects(e)) return true;
-        }
-
-        for (Entity e: EntityArr.bomberman.bombs) {
-            if (this.intersects(e)) return true;
-        }
-        return false;
-    }
-
     public boolean checkBounds() {
         for (Entity e : EntityArr.walls) {
             if (this.intersects(e)) return true;
@@ -96,6 +81,26 @@ public abstract class Entity {
         return false;
     }
 
+    public boolean checkBomb() {
+        for (Entity e : EntityArr.bomberman.bombs) {
+            if (this.intersects(e)) return true;
+        }
+        return false;
+    }
+
+    public boolean checkWall() {
+        for (Entity e : EntityArr.walls) {
+            if (this.intersects(e)) return true;
+        }
+        return false;
+    }
+
+    public boolean checkBrick() {
+        for (Entity e : EntityArr.bricks) {
+            if (this.intersects(e)) return true;
+        }
+        return false;
+    }
     public void setVisible(boolean visible) {
         isVisible = visible;
     }

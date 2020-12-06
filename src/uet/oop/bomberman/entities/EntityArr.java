@@ -1,8 +1,7 @@
 package uet.oop.bomberman.entities;
 
 import uet.oop.bomberman.bomb.Bomb;
-import uet.oop.bomberman.enemy.enemy;
-import uet.oop.bomberman.entities.Brick;
+import uet.oop.bomberman.enemy.Enemy;
 import uet.oop.bomberman.enemy.Ballom;
 import uet.oop.bomberman.enemy.Oneal;
 //import uet.oop.bomberman.entities.item.Item;
@@ -22,7 +21,7 @@ public class EntityArr {
     public static List<Oneal> oneals = new ArrayList<>();
     public static List<Bomb> bombs = new ArrayList<>();
     public static List<Item> items = new ArrayList<>();
-    public static List<enemy> enemies = new ArrayList<>();
+    public static List<Enemy> enemies = new ArrayList<>();
     public static Bomber bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
 //    public static List<Flame> flames = new ArrayList<>();
 

@@ -21,7 +21,7 @@ import java.util.*;
 
 public class BombermanGame extends Application {
 
-    protected int level;
+    public static int level = 1;
     public static  int WIDTH = 20;
     public static  int HEIGHT = 15;
     
@@ -81,51 +81,8 @@ public class BombermanGame extends Application {
                     EntityArr.bomberman.goRight();
                 }
                 if (keyEvent.getCode().toString().equals("SPACE")) {
-                    Bomb bomb = new Bomb(EntityArr.bomberman.getX() / Sprite.SCALED_SIZE,
-                            EntityArr.bomberman.getY() / Sprite.SCALED_SIZE, Sprite.bomb.getFxImage());
-                    boolean duplicate = false;
-                    for (Bomb b : EntityArr.bomberman.bombs) {
-                        if (b.getX() == bomb.getX() && b.getY() == bomb.getY()) {
-                            duplicate = true;
-                            break;
-                        }
-                    }
-                    TimerTask task = new TimerTask() {
-                        @Override
-                        public void run() {
-                            bomb.setImg(Sprite.bomb_exploded.getFxImage());
-                            bomb.setExploded(true);
-                            bomb.addFlame();
-                        }
-                    };
-                    TimerTask task1 = new TimerTask() {
-                        @Override
-                        public void run() {
-                            Iterator<Brick> brickIterator = EntityArr.bricks.listIterator();
-                            while (brickIterator.hasNext()) {
-                                Brick brick = brickIterator.next();
-                                if (brick.isBroken()) {
-                                    brickIterator.remove();
-                                }
-                            }
-                            EntityArr.bomberman.removeBomb(bomb);
-                            Iterator<Bomber> bomberIterator = EntityArr.bombers.listIterator();
-                            while (bomberIterator.hasNext()) {
-                                Bomber bomber = bomberIterator.next();
-                                if (!bomber.isAlive()) {
-                                    bomberIterator.remove();
-                                }
-                            }
-                            EntityArr.removeEnemy();
-                        }
-                    };
-                    if (!duplicate && EntityArr.bomberman.getNumBombs() >= EntityArr.bomberman.bombs.size() + 1) {
-                        EntityArr.bomberman.bombs.add(bomb);
-                        Timer timerEx = new Timer();
-                        timerEx.schedule(task, 2000);
-                        Timer timerRev = new Timer();
-                        timerRev.schedule(task1, 3000L);
-                    }
+                    EntityArr.bomberman.putBomb();
+
                 }
             }
         });
