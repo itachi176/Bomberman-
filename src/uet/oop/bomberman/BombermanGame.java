@@ -97,7 +97,7 @@ public class BombermanGame extends Application {
 
 
     public void update() {
-        EntityArr.bombers.forEach(Entity::update);
+        EntityArr.bomberman.update();
         EntityArr.balloms.forEach(Ballom::update);
         EntityArr.oneals.forEach(Oneal::update);
         EntityArr.bomberman.bombs.forEach(Bomb::update);

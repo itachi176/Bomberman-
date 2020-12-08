@@ -65,6 +65,7 @@ public class EntityArr {
         walls.clear();
         items.clear();
         portals.clear();
-        enemies.clear();
+        oneals.clear();
+        balloms.clear();
     }
 }
