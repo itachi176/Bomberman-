@@ -11,7 +11,8 @@ import java.io.FileReader;
 
 public class CreateMap {
      public static void createMapByLevel(int level) {
-
+        EntityArr.clearArr();
+        EntityArr.bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
         EntityArr.bombers.add(EntityArr.bomberman);
         try {
             String path = "res/levels/Level" + level + ".txt";
@@ -48,7 +49,7 @@ public class CreateMap {
                     // create portal
                     if (maps[j][i] == 'x') {
                         object = new Portal(i, j, Sprite.portal.getFxImage());
-                        EntityArr.grasses.add(object);
+                        EntityArr.portals.add(object);
                     }
                     // create brick
                     if (maps[j][i] == 'x' || maps[j][i] == '*') {

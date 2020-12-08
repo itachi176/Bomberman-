@@ -112,7 +112,7 @@ public class BombermanGame extends Application {
         });
 
         EntityArr.bomberman.update();
-        EntityArr.enemies.forEach(Enemy::update);
+//        EntityArr.enemies.forEach(Enemy::update);
 
         EntityArr.portals.forEach(g -> g.update());
     }
@@ -120,17 +120,17 @@ public class BombermanGame extends Application {
     public void render() {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         EntityArr.grasses.forEach(g -> g.render(gc));
+        EntityArr.portals.forEach(g -> g.render(gc));
         EntityArr.walls.forEach(g -> g.render(gc));
         EntityArr.bricks.forEach(g -> g.render(gc));
-        EntityArr.portals.forEach(g -> g.render(gc));
         EntityArr.balloms.forEach(g -> g.render(gc));
         EntityArr.oneals.forEach(g -> g.render(gc));
         EntityArr.bomberman.bombs.forEach(g -> g.render(gc));
         EntityArr.bombers.forEach(g -> g.render(gc));
         EntityArr.bomberman.bombs.forEach(g -> g.flames.forEach(g1 -> g1.render(gc)));
-        EntityArr.enemies.forEach(g -> {
-            if (g.isVisible()) g.render(gc);
-        });
+//        EntityArr.enemies.forEach(g -> {
+//            if (g.isVisible()) g.render(gc);
+//        });
         EntityArr.items.forEach(g -> {
             if (g.isVisible()) g.render(gc);
         });

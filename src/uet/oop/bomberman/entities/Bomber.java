@@ -6,7 +6,6 @@ import uet.oop.bomberman.bomb.Bomb;
 import uet.oop.bomberman.graphics.Sprite;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class Bomber extends Entity {
@@ -24,12 +23,12 @@ public class Bomber extends Entity {
 
     @Override
     public void update() {
+        this.animate += Sprite.DEFAULT_SIZE / 10;
         if (!isAlive()){
             this.setImg(Sprite.movingSprite(Sprite.player_dead1, Sprite.player_dead2
                     , Sprite.player_dead3, animate, Sprite.DEFAULT_SIZE).getFxImage());
         }
         if (checkPortal()) {
-            System.out.println("OK");
             if (this.time == 0) {
                 this.time++;
                 BombermanGame.level++;
@@ -191,9 +190,9 @@ public class Bomber extends Entity {
             double diffX = this.getX() - e.getX();
             double diffY = this.getY() - e.getY();
             if (!(diffX > -32 && diffX < 32 && diffY > -32 && diffY < 32)) {
-                e.allowedToPassThru = false;
+                e.passThrough = false;
             }
-            if (e.allowedToPassThru) return false;
+            if (e.passThrough) return false;
             if (this.intersects(e)) return true;
         }
         return false;

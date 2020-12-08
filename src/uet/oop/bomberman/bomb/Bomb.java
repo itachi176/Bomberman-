@@ -17,7 +17,7 @@ public class Bomb extends Entity {
     private final List<Flame> fRight = new ArrayList<>();
     private final List<Flame> fUp = new ArrayList<>();
     private final List<Flame> fDown = new ArrayList<>();
-    public boolean allowedToPassThru = true;
+    public boolean passThrough = true;
 
 
     public List<Flame> flames = new ArrayList<>();
