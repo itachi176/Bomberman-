@@ -6,6 +6,7 @@ import uet.oop.bomberman.entities.EntityArr;
 import uet.oop.bomberman.graphics.Sprite;
 
 import java.awt.*;
+import java.util.Random;
 
 public abstract class Enemy extends Entity {
     private int speed = 1;
@@ -67,5 +68,29 @@ public abstract class Enemy extends Entity {
     public void setSpeedY(int speedY) {
         this.speedY = speedY;
     }
+
+    protected void randomVector() {
+        Random random = new Random();
+        int num = random.nextInt(4);
+        switch (num) {
+            case 0:
+                this.speedX = this.getSpeed();
+                this.speedY = 0;
+                break;
+            case 1:
+                this.speedX = this.getSpeed() * -1;
+                this.speedY = 0;
+                break;
+            case 2:
+                this.speedY = this.getSpeed();
+                this.speedX = 0;
+                break;
+            case 3:
+                this.speedY = this.getSpeed() * -1;
+                this.speedX = 0;
+                break;
+        }
+    }
+
 
 }

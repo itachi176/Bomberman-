@@ -1,8 +1,7 @@
 package uet.oop.bomberman.entities;
 
 import uet.oop.bomberman.BombermanGame;
-import uet.oop.bomberman.enemy.Ballom;
-import uet.oop.bomberman.enemy.Oneal;
+import uet.oop.bomberman.enemy.*;
 import uet.oop.bomberman.graphics.Sprite;
 
 import java.io.BufferedReader;
@@ -38,6 +37,8 @@ public class CreateMap {
                     Entity object;
                     Ballom ballom;
                     Oneal oneal;
+                    Doll doll;
+                    Kondoria kondoria;
                     // create wall and grass
                     if (j == 0 || j == BombermanGame.HEIGHT - 1 || i == 0 || i == BombermanGame.WIDTH - 1 || maps[j][i] == '#') {
                         object = new Wall(i, j, Sprite.wall.getFxImage());
@@ -61,6 +62,12 @@ public class CreateMap {
                     } else if (maps[j][i] == '2') {
                         oneal = new Oneal(i, j, Sprite.oneal_right1.getFxImage());
                         EntityArr.oneals.add(oneal);
+                    } else if (maps[j][i] == '3') {
+                        doll = new Doll(i, j, Sprite.doll_right1.getFxImage());
+                        EntityArr.dolls.add(doll);
+                    } else if (maps[j][i] == '4') {
+                        kondoria = new Kondoria(i, j, Sprite.kondoria_right1.getFxImage());
+                        EntityArr.kondorias.add(kondoria);
                     }
                 }
             }

@@ -11,15 +11,10 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import uet.oop.bomberman.bomb.Bomb;
-import uet.oop.bomberman.enemy.Enemy;
-import uet.oop.bomberman.enemy.Oneal;
-import uet.oop.bomberman.enemy.Ballom;
+import uet.oop.bomberman.enemy.*;
 import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.entities.CreateMap;
-
-
-import java.util.*;
 
 public class BombermanGame extends Application {
 
@@ -100,6 +95,8 @@ public class BombermanGame extends Application {
         EntityArr.bomberman.update();
         EntityArr.balloms.forEach(Ballom::update);
         EntityArr.oneals.forEach(Oneal::update);
+        EntityArr.dolls.forEach(Doll::update);
+        EntityArr.kondorias.forEach(Kondoria::update);
         EntityArr.bomberman.bombs.forEach(Bomb::update);
         EntityArr.bricks.forEach(Brick::update);
         // update flame
@@ -125,6 +122,8 @@ public class BombermanGame extends Application {
         EntityArr.bricks.forEach(g -> g.render(gc));
         EntityArr.balloms.forEach(g -> g.render(gc));
         EntityArr.oneals.forEach(g -> g.render(gc));
+        EntityArr.dolls.forEach(g -> g.render(gc));
+        EntityArr.kondorias.forEach(g -> g.render(gc));
         EntityArr.bomberman.bombs.forEach(g -> g.render(gc));
         EntityArr.bombers.forEach(g -> g.render(gc));
         EntityArr.bomberman.bombs.forEach(g -> g.flames.forEach(g1 -> g1.render(gc)));

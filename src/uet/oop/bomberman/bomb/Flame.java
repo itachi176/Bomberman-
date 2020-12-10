@@ -53,6 +53,16 @@ public abstract class Flame extends Entity {
                 e.setAlive(false);
             }
         }
+        for (Enemy e : EntityArr.dolls) {
+            if (this.intersects(e)) {
+                e.setAlive(false);
+            }
+        }
+        for (Enemy e : EntityArr.kondorias) {
+            if (this.intersects(e)) {
+                e.setAlive(false);
+            }
+        }
     }
 
     @Override
