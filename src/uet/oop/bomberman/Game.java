@@ -14,10 +14,7 @@ import uet.oop.bomberman.enemy.Balloom;
 import uet.oop.bomberman.enemy.Doll;
 import uet.oop.bomberman.enemy.Kondoria;
 import uet.oop.bomberman.enemy.Oneal;
-import uet.oop.bomberman.entities.Brick;
-import uet.oop.bomberman.entities.CreateMap;
-import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.Management;
+import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.sound.Sound;
 

@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class CreateMap {
     public static void createMapByLevel(int level) {
-        Management.clearArr();
+        Management.clear();
         Management.bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
         Management.bombers.add(Management.bomberman);
         try {

@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import uet.oop.bomberman.Game;
 import uet.oop.bomberman.bomb.Bomb;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.sound.Sound;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ public class Bomber extends Entity {
     public List<Bomb> bombs = new ArrayList<>();
     private int speed = Sprite.SCALED_SIZE / 6;
     private int flameLength = 1;
-    private boolean isAlive = true;
+    public boolean isAlive = true;
     private int numBombs = 1;
     private int time = 0;
 
@@ -26,15 +27,13 @@ public class Bomber extends Entity {
         if (!isAlive()) {
             this.setImg(Sprite.movingSprite(Sprite.player_dead1, Sprite.player_dead2
                     , Sprite.player_dead3, animate, Sprite.DEFAULT_SIZE).getFxImage());
-            // Sound.play("AA126_11");
-            Management.clearArr();
-            CreateMap.createMapByLevel(Game.level);
+//             Management.clear();
+//            CreateMap.createMapByLevel(Game.level);
         }
         if (checkPortal()) {
             if (this.time == 0) {
                 this.time++;
                 Game.level++;
-                //System.out.println(BombermanGame.level);
                 CreateMap.createMapByLevel(2);
             }
         }
@@ -50,16 +49,28 @@ public class Bomber extends Entity {
         return false;
     }
 
+    public void supportRow() {
+        if (this.y % Sprite.SCALED_SIZE >= 2 * Sprite.SCALED_SIZE / 3) {
+            this.y = Sprite.SCALED_SIZE * (this.y / Sprite.SCALED_SIZE) + Sprite.SCALED_SIZE;
+        } else if (this.y % Sprite.SCALED_SIZE <= Sprite.SCALED_SIZE / 3) {
+            this.y = Sprite.SCALED_SIZE * (this.y / Sprite.SCALED_SIZE);
+        }
+    }
+
+    public void supportColumn() {
+        if (this.x % Sprite.SCALED_SIZE >= 2 * Sprite.SCALED_SIZE / 3) {
+            this.x = Sprite.SCALED_SIZE * (this.x / Sprite.SCALED_SIZE) + Sprite.SCALED_SIZE;
+        } else if (this.x % Sprite.SCALED_SIZE <= Sprite.SCALED_SIZE / 3) {
+            this.x = Sprite.SCALED_SIZE * (this.x / Sprite.SCALED_SIZE);
+        }
+    }
+
     public void goLeft() {
         for (int i = 1; i <= this.speed; ++i) {
             this.x -= 1;
             if (checkBrick() || checkWall() || checkBomb()) {
                 this.x += 1;
-                if (this.y % Sprite.SCALED_SIZE >= 2 * Sprite.SCALED_SIZE / 3) {
-                    this.y = Sprite.SCALED_SIZE * (this.y / Sprite.SCALED_SIZE) + Sprite.SCALED_SIZE;
-                } else if (this.y % Sprite.SCALED_SIZE <= Sprite.SCALED_SIZE / 3) {
-                    this.y = Sprite.SCALED_SIZE * (this.y / Sprite.SCALED_SIZE);
-                }
+                supportRow();
                 break;
             }
         }
@@ -72,11 +83,7 @@ public class Bomber extends Entity {
             this.x += 1;
             if (checkBrick() || checkWall() || checkBomb()) {
                 this.x -= 1;
-                if (this.y % Sprite.SCALED_SIZE >= 2 * Sprite.SCALED_SIZE / 3) {
-                    this.y = Sprite.SCALED_SIZE * (this.y / Sprite.SCALED_SIZE) + Sprite.SCALED_SIZE;
-                } else if (this.y % Sprite.SCALED_SIZE <= Sprite.SCALED_SIZE / 3) {
-                    this.y = Sprite.SCALED_SIZE * (this.y / Sprite.SCALED_SIZE);
-                }
+                supportRow();
                 break;
             }
         }
@@ -89,11 +96,7 @@ public class Bomber extends Entity {
             this.y -= 1;
             if (checkBrick() || checkWall() || checkBomb()) {
                 this.y += 1;
-                if (this.x % Sprite.SCALED_SIZE >= 2 * Sprite.SCALED_SIZE / 3) {
-                    this.x = Sprite.SCALED_SIZE * (this.x / Sprite.SCALED_SIZE) + Sprite.SCALED_SIZE;
-                } else if (this.x % Sprite.SCALED_SIZE <= Sprite.SCALED_SIZE / 3) {
-                    this.x = Sprite.SCALED_SIZE * (this.x / Sprite.SCALED_SIZE);
-                }
+                supportColumn();
                 break;
             }
         }
@@ -106,11 +109,7 @@ public class Bomber extends Entity {
             this.y += 1;
             if (checkBrick() || checkWall() || checkBomb()) {
                 this.y -= 1;
-                if (this.x % Sprite.SCALED_SIZE >= 2 * Sprite.SCALED_SIZE / 3) {
-                    this.x = Sprite.SCALED_SIZE * (this.x / Sprite.SCALED_SIZE) + Sprite.SCALED_SIZE;
-                } else if (this.x % Sprite.SCALED_SIZE <= Sprite.SCALED_SIZE / 3) {
-                    this.x = Sprite.SCALED_SIZE * (this.x / Sprite.SCALED_SIZE);
-                }
+                supportColumn();
                 break;
             }
         }

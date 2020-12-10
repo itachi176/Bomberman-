@@ -13,7 +13,7 @@ public class SpeedItem extends Item {
     public void update() {
         super.update();
         if (this.used == 1) {
-            Management.bomberman.setSpeed(Management.bomberman.getSpeed() + Sprite.DEFAULT_SIZE / 12);
+            Management.bomberman.setSpeed(Management.bomberman.getSpeed() + Sprite.DEFAULT_SIZE / 10);
         }
     }
 }

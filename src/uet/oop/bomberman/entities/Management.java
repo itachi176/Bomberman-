@@ -31,6 +31,8 @@ public class Management {
 
         kondorias.removeIf(kondoria -> !kondoria.isAlive());
 
+        bombers.removeIf(bomber -> !bomber.isAlive());
+
     }
 
     public static void removeBrick() {
@@ -41,11 +43,10 @@ public class Management {
         bomberman.bombs.removeIf(Bomb::isExploded);
     }
 
-    public static void clearArr() {
+    public static void clear() {
         bombers.clear();
         grasses.clear();
         walls.clear();
-
         portals.clear();
         oneals.clear();
         ballooms.clear();
@@ -53,8 +54,6 @@ public class Management {
         kondorias.clear();
         items.clear();
         bricks.clear();
-
-
     }
 
 }

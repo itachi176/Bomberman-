@@ -37,7 +37,7 @@ public class Bomb extends Entity {
                 this.timerEx++;
 
                 Flame flame;
-                for (int i = 0; i <= flameLength; ++i) {
+                for (int i = 0; i <= flameLength; i++) {
                     flame = new FlameVertical(getX() / Sprite.SCALED_SIZE, getY() / Sprite.SCALED_SIZE + i
                             , Sprite.explosion_vertical.getFxImage());
                     if (!flame.checkBrick() && !flame.checkWall()) {
@@ -48,7 +48,7 @@ public class Bomb extends Entity {
                     }
                 }
 
-                for (int i = 0; i <= flameLength; ++i) {
+                for (int i = 0; i <= flameLength; i++) {
                     flame = new FlameVertical(getX() / Sprite.SCALED_SIZE, getY() / Sprite.SCALED_SIZE - i
                             , Sprite.explosion_vertical.getFxImage());
                     if (!flame.checkBrick() && !flame.checkWall()) {
