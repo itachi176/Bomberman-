@@ -5,6 +5,7 @@ import uet.oop.bomberman.enemy.Enemy;
 import uet.oop.bomberman.entities.Brick;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.EntityArr;
+import uet.oop.bomberman.sound.Sound;
 
 public abstract class Flame extends Entity {
     public Flame(int xUnit, int yUnit, Image img) {
@@ -44,6 +45,7 @@ public abstract class Flame extends Entity {
         for (Enemy e : EntityArr.ballooms) {
             if (this.intersects(e)) {
                 e.setAlive(false);
+                //Sound.play("endgame3");
             }
         }
         for (Enemy e : EntityArr.oneals) {
@@ -77,5 +79,6 @@ public abstract class Flame extends Entity {
     protected void checkBomber() {
         if (this.intersects(EntityArr.bomberman))
             EntityArr.bomberman.setAlive(false);
+       // Sound.play("endgame3");
     }
 }

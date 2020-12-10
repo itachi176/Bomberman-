@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.EntityArr;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.sound.Sound;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -134,10 +135,12 @@ public class Bomb extends Entity {
         if (!this.isExploded()) {
             Timer timerEx = new Timer();
             timerEx.schedule(bombEx, 2000);
+            Sound.play("BOM_SET");
         }
         TimerTask removeFlame = new TimerTask() {
             @Override
             public void run() {
+                Sound.play("BOM_11_M");
                 EntityArr.removeBrick();
                 EntityArr.removeBomb();
                 EntityArr.removeEnemy();
