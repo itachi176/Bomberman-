@@ -14,9 +14,31 @@ public abstract class Flame extends Entity {
 
     @Override
     public void update() {
-        checkEnemy();
+        for (Enemy e : EntityArr.ballooms) {
+            if (this.intersects(e)) {
+                e.setAlive(false);
+                //Sound.play("endgame3");
+            }
+        }
+        for (Enemy e : EntityArr.oneals) {
+            if (this.intersects(e)) {
+                e.setAlive(false);
+            }
+        }
+        for (Enemy e : EntityArr.dolls) {
+            if (this.intersects(e)) {
+                e.setAlive(false);
+            }
+        }
+        for (Enemy e : EntityArr.kondorias) {
+            if (this.intersects(e)) {
+                e.setAlive(false);
+            }
+        }
         checkBomb();
-        checkBomber();
+        if (this.intersects(EntityArr.bomberman))
+            EntityArr.bomberman.setAlive(false);
+        // Sound.play("endgame3");
     }
 
     @Override
@@ -41,30 +63,6 @@ public abstract class Flame extends Entity {
         return false;
     }
 
-    protected void checkEnemy() {
-        for (Enemy e : EntityArr.ballooms) {
-            if (this.intersects(e)) {
-                e.setAlive(false);
-                //Sound.play("endgame3");
-            }
-        }
-        for (Enemy e : EntityArr.oneals) {
-            if (this.intersects(e)) {
-                e.setAlive(false);
-            }
-        }
-        for (Enemy e : EntityArr.dolls) {
-            if (this.intersects(e)) {
-                e.setAlive(false);
-            }
-        }
-        for (Enemy e : EntityArr.kondorias) {
-            if (this.intersects(e)) {
-                e.setAlive(false);
-            }
-        }
-    }
-
     @Override
     public boolean checkBomb() {
         for (Bomb bomb : EntityArr.bomberman.bombs) {
@@ -74,11 +72,5 @@ public abstract class Flame extends Entity {
             }
         }
         return false;
-    }
-
-    protected void checkBomber() {
-        if (this.intersects(EntityArr.bomberman))
-            EntityArr.bomberman.setAlive(false);
-       // Sound.play("endgame3");
     }
 }

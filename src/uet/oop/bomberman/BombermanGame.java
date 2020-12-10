@@ -23,7 +23,7 @@ public class BombermanGame extends Application {
     public static int WIDTH = 20;
     public static int HEIGHT = 15;
 
-    private GraphicsContext gc;
+    private GraphicsContext graphicsContext;
     private Canvas canvas;
 
     public static void main(String[] args) {
@@ -34,7 +34,7 @@ public class BombermanGame extends Application {
     public void start(Stage stage) {
         CreateMap.createMapByLevel(1);
         canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
-        gc = canvas.getGraphicsContext2D();
+        graphicsContext = canvas.getGraphicsContext2D();
 
         Group root = new Group();
         root.getChildren().add(canvas);
@@ -89,32 +89,32 @@ public class BombermanGame extends Application {
         EntityArr.kondorias.forEach(Kondoria::update);
         EntityArr.bomberman.bombs.forEach(Bomb::update);
         EntityArr.bricks.forEach(Brick::update);
-        EntityArr.bomberman.bombs.forEach(g -> g.getfUp().forEach(Flame::update));
-        EntityArr.bomberman.bombs.forEach(g -> g.getfDown().forEach(Flame::update));
-        EntityArr.bomberman.bombs.forEach(g -> g.getfLeft().forEach(Flame::update));
-        EntityArr.bomberman.bombs.forEach(g -> g.getfRight().forEach(Flame::update));
-        EntityArr.items.forEach(g -> {
-            if (g.isVisible()) g.update();
+        EntityArr.bomberman.bombs.forEach(g -> g.getUp().forEach(Flame::update));
+        EntityArr.bomberman.bombs.forEach(g -> g.getDown().forEach(Flame::update));
+        EntityArr.bomberman.bombs.forEach(g -> g.getLeft().forEach(Flame::update));
+        EntityArr.bomberman.bombs.forEach(g -> g.getRight().forEach(Flame::update));
+        EntityArr.items.forEach(item -> {
+            if (item.isVisible()) item.update();
         });
         EntityArr.bomberman.update();
         EntityArr.portals.forEach(Entity::update);
     }
 
     public void render() {
-        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        EntityArr.grasses.forEach(g -> g.render(gc));
-        EntityArr.portals.forEach(g -> g.render(gc));
-        EntityArr.walls.forEach(g -> g.render(gc));
-        EntityArr.bricks.forEach(g -> g.render(gc));
-        EntityArr.ballooms.forEach(g -> g.render(gc));
-        EntityArr.oneals.forEach(g -> g.render(gc));
-        EntityArr.dolls.forEach(g -> g.render(gc));
-        EntityArr.kondorias.forEach(g -> g.render(gc));
-        EntityArr.bomberman.bombs.forEach(g -> g.render(gc));
-        EntityArr.bombers.forEach(g -> g.render(gc));
-        EntityArr.bomberman.bombs.forEach(g -> g.flames.forEach(g1 -> g1.render(gc)));
+        graphicsContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        EntityArr.grasses.forEach(g -> g.render(graphicsContext));
+        EntityArr.portals.forEach(g -> g.render(graphicsContext));
+        EntityArr.walls.forEach(g -> g.render(graphicsContext));
+        EntityArr.bricks.forEach(g -> g.render(graphicsContext));
+        EntityArr.ballooms.forEach(g -> g.render(graphicsContext));
+        EntityArr.oneals.forEach(g -> g.render(graphicsContext));
+        EntityArr.dolls.forEach(g -> g.render(graphicsContext));
+        EntityArr.kondorias.forEach(g -> g.render(graphicsContext));
+        EntityArr.bomberman.bombs.forEach(g -> g.render(graphicsContext));
+        EntityArr.bombers.forEach(g -> g.render(graphicsContext));
+        EntityArr.bomberman.bombs.forEach(g -> g.flames.forEach(g1 -> g1.render(graphicsContext)));
         EntityArr.items.forEach(g -> {
-            if (g.isVisible()) g.render(gc);
+            if (g.isVisible()) g.render(graphicsContext);
         });
 
     }

@@ -3,9 +3,9 @@ package uet.oop.bomberman.bomb;
 import javafx.scene.image.Image;
 import uet.oop.bomberman.graphics.Sprite;
 
-public class FlameV extends Flame {
+public class FlameVertical extends Flame {
 
-    public FlameV(int xUnit, int yUnit, Image img) {
+    public FlameVertical(int xUnit, int yUnit, Image img) {
         super(xUnit, yUnit, img);
     }
 

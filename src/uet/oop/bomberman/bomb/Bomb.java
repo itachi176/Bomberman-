@@ -12,10 +12,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Bomb extends Entity {
-    private final List<Flame> fLeft = new ArrayList<>();
-    private final List<Flame> fRight = new ArrayList<>();
-    private final List<Flame> fUp = new ArrayList<>();
-    private final List<Flame> fDown = new ArrayList<>();
+    private final List<Flame> left = new ArrayList<>();
+    private final List<Flame> right = new ArrayList<>();
+    private final List<Flame> up = new ArrayList<>();
+    private final List<Flame> down = new ArrayList<>();
     public boolean passThrough = true;
     public List<Flame> flames = new ArrayList<>();
     public int timerEx = 0;
@@ -31,7 +31,7 @@ public class Bomb extends Entity {
         animate += Sprite.DEFAULT_SIZE / 10;
         flameLength = EntityArr.bomberman.getFlameLength();
         if (this.isExploded()) {
-            this.animate = this.animate + Sprite.DEFAULT_SIZE / 10;
+            this.animate += Sprite.DEFAULT_SIZE / 10;
             this.setImg(Sprite.movingSprite(Sprite.bomb_exploded, Sprite.bomb_exploded1
                     , Sprite.bomb_exploded2, animate, Sprite.DEFAULT_SIZE).getFxImage());
             if (this.timerEx == 1) {
@@ -43,7 +43,7 @@ public class Bomb extends Entity {
                 this.timerEx++;
                 setTimeExploded();
             }
-            this.animate = this.animate + Sprite.DEFAULT_SIZE / 10;
+            this.animate += Sprite.DEFAULT_SIZE / 10;
             this.setImg(Sprite.movingSprite(Sprite.bomb, Sprite.bomb_1
                     , Sprite.bomb_2, animate, Sprite.DEFAULT_SIZE).getFxImage());
         }
@@ -57,33 +57,29 @@ public class Bomb extends Entity {
         isExploded = exploded;
     }
 
-    public List<Flame> getfDown() {
-        return fDown;
+    public List<Flame> getDown() {
+        return down;
     }
 
-    public List<Flame> getFlames() {
-        return flames;
+    public List<Flame> getLeft() {
+        return left;
     }
 
-    public List<Flame> getfLeft() {
-        return fLeft;
+    public List<Flame> getRight() {
+        return right;
     }
 
-    public List<Flame> getfRight() {
-        return fRight;
-    }
-
-    public List<Flame> getfUp() {
-        return fUp;
+    public List<Flame> getUp() {
+        return up;
     }
 
     public void addFlame() {
         Flame flame;
         for (int i = 0; i <= flameLength; ++i) {
-            flame = new FlameV(getX() / Sprite.SCALED_SIZE, getY() / Sprite.SCALED_SIZE + i
+            flame = new FlameVertical(getX() / Sprite.SCALED_SIZE, getY() / Sprite.SCALED_SIZE + i
                     , Sprite.explosion_vertical.getFxImage());
             if (!flame.checkBrick() && !flame.checkWall()) {
-                fDown.add(flame);
+                down.add(flame);
                 this.flames.add(flame);
             } else {
                 break;
@@ -91,10 +87,10 @@ public class Bomb extends Entity {
         }
 
         for (int i = 0; i <= flameLength; ++i) {
-            flame = new FlameV(getX() / Sprite.SCALED_SIZE, getY() / Sprite.SCALED_SIZE - i
+            flame = new FlameVertical(getX() / Sprite.SCALED_SIZE, getY() / Sprite.SCALED_SIZE - i
                     , Sprite.explosion_vertical.getFxImage());
             if (!flame.checkBrick() && !flame.checkWall()) {
-                fUp.add(flame);
+                up.add(flame);
                 this.flames.add(flame);
             } else {
                 break;
@@ -102,10 +98,10 @@ public class Bomb extends Entity {
         }
 
         for (int i = 0; i <= flameLength; ++i) {
-            flame = new FlameH(getX() / Sprite.SCALED_SIZE + i, getY() / Sprite.SCALED_SIZE
+            flame = new FlameHorizontal(getX() / Sprite.SCALED_SIZE + i, getY() / Sprite.SCALED_SIZE
                     , Sprite.explosion_horizontal.getFxImage());
             if (!flame.checkBrick() && !flame.checkWall()) {
-                fRight.add(flame);
+                right.add(flame);
                 this.flames.add(flame);
             } else {
                 break;
@@ -113,17 +109,15 @@ public class Bomb extends Entity {
         }
 
         for (int i = 0; i <= flameLength; ++i) {
-            flame = new FlameH(getX() / Sprite.SCALED_SIZE - i, getY() / Sprite.SCALED_SIZE
+            flame = new FlameHorizontal(getX() / Sprite.SCALED_SIZE - i, getY() / Sprite.SCALED_SIZE
                     , Sprite.explosion_horizontal.getFxImage());
             if (!flame.checkBrick() && !flame.checkWall()) {
-                fLeft.add(flame);
+                left.add(flame);
                 this.flames.add(flame);
             } else {
                 break;
             }
         }
-//        this.flames.add(new FlameH(getX() / Sprite.SCALED_SIZE, getY() / Sprite.SCALED_SIZE
-//                    , Sprite.explosion_horizontal.getFxImage()));
     }
 
     public void setTimeExploded() {
@@ -136,8 +130,8 @@ public class Bomb extends Entity {
         };
         if (!this.isExploded()) {
             Timer timerEx = new Timer();
-            timerEx.schedule(bombEx, 2000);
-            Sound.play("BOM_SET");
+            timerEx.schedule(bombEx, 1500);
+            Sound.play("bom_no");
         }
         TimerTask removeFlame = new TimerTask() {
             @Override
@@ -149,6 +143,6 @@ public class Bomb extends Entity {
             }
         };
         Timer timer = new Timer();
-        timer.schedule(removeFlame, 2500L);
+        timer.schedule(removeFlame, 2000L);
     }
 }
