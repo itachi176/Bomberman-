@@ -1,4 +1,5 @@
 package uet.oop.bomberman.sound;
+
 import uet.oop.bomberman.Game;
 
 import javax.sound.sampled.AudioInputStream;
@@ -22,7 +23,8 @@ public class Sound {
         }).start();
 
     }
-    public static void stop(String sound){
+
+    public static void stop(String sound) {
         new Thread(new Runnable() {
             public void run() {
                 try {

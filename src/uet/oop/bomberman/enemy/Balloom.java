@@ -13,9 +13,6 @@ public class Balloom extends Enemy {
     public void update() {
         super.update();
         if (isAlive()) {
-            if (checkBounds() || checkBomb()) {
-                this.setSpeed(getSpeed() * -1);
-            }
             if (this.getSpeed() > 0) {
                 this.x += this.getSpeed();
                 this.img = Sprite.movingSprite(Sprite.balloom_right1, Sprite.balloom_right2
@@ -24,6 +21,9 @@ public class Balloom extends Enemy {
                 this.x += this.getSpeed();
                 this.img = Sprite.movingSprite(Sprite.balloom_left1, Sprite.balloom_left2
                         , Sprite.balloom_left3, this.animate, Sprite.DEFAULT_SIZE).getFxImage();
+            }
+            if (checkBounds() || checkBomb()) {
+                this.setSpeed(getSpeed() * -1);
             }
         } else {
             this.img = Sprite.balloom_dead.getFxImage();

@@ -36,16 +36,13 @@ public class Brick extends Entity {
                         if (num == 1) {
                             item = new BombItem(x / Sprite.SCALED_SIZE, y / Sprite.SCALED_SIZE
                                     , Sprite.powerup_bombs.getFxImage());
-                        }
-                        else if (num == 2) {
+                        } else if (num == 2) {
                             item = new FameItem(x / Sprite.SCALED_SIZE, y / Sprite.SCALED_SIZE
                                     , Sprite.powerup_flames.getFxImage());
-                        }
-                        else if (num == 3) {
+                        } else if (num == 3) {
                             item = new SpeedItem(x / Sprite.SCALED_SIZE, y / Sprite.SCALED_SIZE
                                     , Sprite.powerup_speed.getFxImage());
-                        }
-                        else {
+                        } else {
                             item = null;
                         }
                         if (item != null) {

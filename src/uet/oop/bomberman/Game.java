@@ -14,7 +14,10 @@ import uet.oop.bomberman.enemy.Balloom;
 import uet.oop.bomberman.enemy.Doll;
 import uet.oop.bomberman.enemy.Kondoria;
 import uet.oop.bomberman.enemy.Oneal;
-import uet.oop.bomberman.entities.*;
+import uet.oop.bomberman.entities.Brick;
+import uet.oop.bomberman.entities.CreateMap;
+import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.entities.Management;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.sound.Sound;
 
@@ -105,19 +108,19 @@ public class Game extends Application {
 
     public void render() {
         graphicsContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        Management.grasses.forEach(g -> g.render(graphicsContext));
-        Management.portals.forEach(g -> g.render(graphicsContext));
-        Management.walls.forEach(g -> g.render(graphicsContext));
-        Management.bricks.forEach(g -> g.render(graphicsContext));
-        Management.ballooms.forEach(g -> g.render(graphicsContext));
-        Management.oneals.forEach(g -> g.render(graphicsContext));
-        Management.dolls.forEach(g -> g.render(graphicsContext));
-        Management.kondorias.forEach(g -> g.render(graphicsContext));
-        Management.bomberman.bombs.forEach(g -> g.render(graphicsContext));
-        Management.bombers.forEach(g -> g.render(graphicsContext));
-        Management.bomberman.bombs.forEach(g -> g.flames.forEach(g1 -> g1.render(graphicsContext)));
-        Management.items.forEach(g -> {
-            if (g.isVisible()) g.render(graphicsContext);
+        Management.grasses.forEach(grass -> grass.render(graphicsContext));
+        Management.portals.forEach(portal -> portal.render(graphicsContext));
+        Management.walls.forEach(wall -> wall.render(graphicsContext));
+        Management.bricks.forEach(brick -> brick.render(graphicsContext));
+        Management.ballooms.forEach(balloom -> balloom.render(graphicsContext));
+        Management.oneals.forEach(oneal -> oneal.render(graphicsContext));
+        Management.dolls.forEach(doll -> doll.render(graphicsContext));
+        Management.kondorias.forEach(kondoria -> kondoria.render(graphicsContext));
+        Management.bomberman.bombs.forEach(bomb -> bomb.render(graphicsContext));
+        Management.bombers.forEach(bomber -> bomber.render(graphicsContext));
+        Management.bomberman.bombs.forEach(bomb -> bomb.flames.forEach(g1 -> g1.render(graphicsContext)));
+        Management.items.forEach(item -> {
+            if (item.isVisible()) item.render(graphicsContext);
         });
 
     }

@@ -26,7 +26,7 @@ public class Bomber extends Entity {
         if (!isAlive()) {
             this.setImg(Sprite.movingSprite(Sprite.player_dead1, Sprite.player_dead2
                     , Sprite.player_dead3, animate, Sprite.DEFAULT_SIZE).getFxImage());
-           // Sound.play("AA126_11");
+            // Sound.play("AA126_11");
             Management.clearArr();
             CreateMap.createMapByLevel(Game.level);
         }

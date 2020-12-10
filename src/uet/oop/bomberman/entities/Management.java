@@ -6,7 +6,6 @@ import uet.oop.bomberman.entities.item.Item;
 import uet.oop.bomberman.graphics.Sprite;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class Management {
