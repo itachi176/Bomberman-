@@ -1,7 +1,7 @@
 package uet.oop.bomberman.entities;
 
 import javafx.scene.image.Image;
-import uet.oop.bomberman.BombermanGame;
+import uet.oop.bomberman.Game;
 import uet.oop.bomberman.bomb.Bomb;
 import uet.oop.bomberman.graphics.Sprite;
 
@@ -28,12 +28,12 @@ public class Bomber extends Entity {
                     , Sprite.player_dead3, animate, Sprite.DEFAULT_SIZE).getFxImage());
            // Sound.play("AA126_11");
             Management.clearArr();
-            CreateMap.createMapByLevel(BombermanGame.level);
+            CreateMap.createMapByLevel(Game.level);
         }
         if (checkPortal()) {
             if (this.time == 0) {
                 this.time++;
-                BombermanGame.level++;
+                Game.level++;
                 //System.out.println(BombermanGame.level);
                 CreateMap.createMapByLevel(2);
             }
