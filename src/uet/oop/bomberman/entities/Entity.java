@@ -62,32 +62,32 @@ public abstract class Entity {
     }
 
     public boolean checkBounds() {
-        for (Entity e : EntityArr.walls) {
+        for (Entity e : Management.walls) {
             if (this.intersects(e)) return true;
         }
 
-        for (Entity e : EntityArr.bricks) {
+        for (Entity e : Management.bricks) {
             if (this.intersects(e)) return true;
         }
         return false;
     }
 
     public boolean checkBomb() {
-        for (Entity e : EntityArr.bomberman.bombs) {
+        for (Entity e : Management.bomberman.bombs) {
             if (this.intersects(e)) return true;
         }
         return false;
     }
 
     public boolean checkWall() {
-        for (Entity e : EntityArr.walls) {
+        for (Entity e : Management.walls) {
             if (this.intersects(e)) return true;
         }
         return false;
     }
 
     public boolean checkBrick() {
-        for (Entity e : EntityArr.bricks) {
+        for (Entity e : Management.bricks) {
             if (this.intersects(e)) return true;
         }
         return false;

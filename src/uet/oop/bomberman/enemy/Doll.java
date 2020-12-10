@@ -2,7 +2,7 @@ package uet.oop.bomberman.enemy;
 
 import javafx.scene.image.Image;
 import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.EntityArr;
+import uet.oop.bomberman.entities.Management;
 import uet.oop.bomberman.graphics.Sprite;
 
 public class Doll extends Enemy {
@@ -47,7 +47,7 @@ public class Doll extends Enemy {
 
     @Override
     public boolean checkBounds() {
-        for (Entity e : EntityArr.walls) {
+        for (Entity e : Management.walls) {
             if (this.intersects(e)) return true;
         }
         return false;

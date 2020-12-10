@@ -13,11 +13,11 @@ import java.io.FileReader;
 
 public class CreateMap {
     public static void createMapByLevel(int level) {
-        EntityArr.clearArr();
-        EntityArr.bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
-         EntityArr.clearArr();
-         EntityArr.bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
-         EntityArr.bombers.add(EntityArr.bomberman);
+        Management.clearArr();
+        Management.bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
+         Management.clearArr();
+         Management.bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
+         Management.bombers.add(Management.bomberman);
         try {
             String path = "res/levels/Level" + level + ".txt";
             File file = new File(path);
@@ -46,30 +46,30 @@ public class CreateMap {
                     Kondoria kondoria;
                     if (j == 0 || j == BombermanGame.HEIGHT - 1 || i == 0 || i == BombermanGame.WIDTH - 1 || maps[j][i] == '#') {
                         object = new Wall(i, j, Sprite.wall.getFxImage());
-                        EntityArr.walls.add(object);
+                        Management.walls.add(object);
                     } else {
                         object = new Grass(i, j, Sprite.grass.getFxImage());
-                        EntityArr.grasses.add(object);
+                        Management.grasses.add(object);
                     }
                     if (maps[j][i] == 'x') {
                         object = new Portal(i, j, Sprite.portal.getFxImage());
-                        EntityArr.portals.add(object);
+                        Management.portals.add(object);
                     }
                     if (maps[j][i] == 'x' || maps[j][i] == '*') {
                         brick = new Brick(i, j, Sprite.brick.getFxImage());
-                        EntityArr.bricks.add(brick);
+                        Management.bricks.add(brick);
                     } else if (maps[j][i] == '1') {
                         balloom = new Balloom(i, j, Sprite.balloom_left1.getFxImage());
-                        EntityArr.ballooms.add(balloom);
+                        Management.ballooms.add(balloom);
                     } else if (maps[j][i] == '2') {
                         oneal = new Oneal(i, j, Sprite.oneal_right1.getFxImage());
-                        EntityArr.oneals.add(oneal);
+                        Management.oneals.add(oneal);
                     } else if (maps[j][i] == '3') {
                         doll = new Doll(i, j, Sprite.doll_right1.getFxImage());
-                        EntityArr.dolls.add(doll);
+                        Management.dolls.add(doll);
                     } else if (maps[j][i] == '4') {
                         kondoria = new Kondoria(i, j, Sprite.kondoria_right1.getFxImage());
-                        EntityArr.kondorias.add(kondoria);
+                        Management.kondorias.add(kondoria);
                     }
                 }
             }

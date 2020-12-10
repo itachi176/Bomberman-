@@ -2,7 +2,7 @@ package uet.oop.bomberman.bomb;
 
 import javafx.scene.image.Image;
 import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.EntityArr;
+import uet.oop.bomberman.entities.Management;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.sound.Sound;
 
@@ -29,7 +29,7 @@ public class Bomb extends Entity {
     @Override
     public void update() {
         animate += Sprite.DEFAULT_SIZE / 10;
-        flameLength = EntityArr.bomberman.getFlameLength();
+        flameLength = Management.bomberman.getFlameLength();
         if (this.isExploded()) {
             this.animate += Sprite.DEFAULT_SIZE / 10;
             this.setImg(Sprite.movingSprite(Sprite.bomb_exploded, Sprite.bomb_exploded1
@@ -137,9 +137,9 @@ public class Bomb extends Entity {
             @Override
             public void run() {
                 Sound.play("BOM_11_M");
-                EntityArr.removeBrick();
-                EntityArr.removeBomb();
-                EntityArr.removeEnemy();
+                Management.removeBrick();
+                Management.removeBomb();
+                Management.removeEnemy();
             }
         };
         Timer timer = new Timer();

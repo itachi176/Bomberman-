@@ -4,7 +4,6 @@ import javafx.scene.image.Image;
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.bomb.Bomb;
 import uet.oop.bomberman.graphics.Sprite;
-import uet.oop.bomberman.sound.Sound;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +27,7 @@ public class Bomber extends Entity {
             this.setImg(Sprite.movingSprite(Sprite.player_dead1, Sprite.player_dead2
                     , Sprite.player_dead3, animate, Sprite.DEFAULT_SIZE).getFxImage());
            // Sound.play("AA126_11");
-            EntityArr.clearArr();
+            Management.clearArr();
             CreateMap.createMapByLevel(BombermanGame.level);
         }
         if (checkPortal()) {
@@ -42,8 +41,8 @@ public class Bomber extends Entity {
     }
 
     public boolean checkPortal() {
-        for (Entity portal : EntityArr.portals) {
-            if (EntityArr.ballooms.size() != 0 || EntityArr.oneals.size() != 0) break;
+        for (Entity portal : Management.portals) {
+            if (Management.ballooms.size() != 0 || Management.oneals.size() != 0) break;
             if (this.intersects(portal)) {
                 return true;
             }
@@ -158,7 +157,7 @@ public class Bomber extends Entity {
                 return true;
             }
         }
-        for (Brick b : EntityArr.bricks) {
+        for (Brick b : Management.bricks) {
             if (b.getX() == bomb.getX() && b.getY() == bomb.getY()) {
                 return true;
             }
@@ -189,7 +188,7 @@ public class Bomber extends Entity {
 
     @Override
     public boolean checkBomb() {
-        for (Bomb e : EntityArr.bomberman.bombs) {
+        for (Bomb e : Management.bomberman.bombs) {
             double diffX = this.getX() - e.getX();
             double diffY = this.getY() - e.getY();
             if (!(diffX > -32 && diffX < 32 && diffY > -32 && diffY < 32)) {

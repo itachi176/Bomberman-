@@ -2,7 +2,7 @@ package uet.oop.bomberman.enemy;
 
 import javafx.scene.image.Image;
 import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.EntityArr;
+import uet.oop.bomberman.entities.Management;
 import uet.oop.bomberman.graphics.Sprite;
 
 import java.util.Random;
@@ -24,8 +24,8 @@ public abstract class Enemy extends Entity {
     }
 
     protected void checkBoundBomber() {
-        if (EntityArr.bomberman.intersects(this)) {
-            EntityArr.bomberman.setAlive(false);
+        if (Management.bomberman.intersects(this)) {
+            Management.bomberman.setAlive(false);
         }
     }
 

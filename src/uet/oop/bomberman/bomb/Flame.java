@@ -4,8 +4,7 @@ import javafx.scene.image.Image;
 import uet.oop.bomberman.enemy.Enemy;
 import uet.oop.bomberman.entities.Brick;
 import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.EntityArr;
-import uet.oop.bomberman.sound.Sound;
+import uet.oop.bomberman.entities.Management;
 
 public abstract class Flame extends Entity {
     public Flame(int xUnit, int yUnit, Image img) {
@@ -14,36 +13,36 @@ public abstract class Flame extends Entity {
 
     @Override
     public void update() {
-        for (Enemy e : EntityArr.ballooms) {
+        for (Enemy e : Management.ballooms) {
             if (this.intersects(e)) {
                 e.setAlive(false);
                 //Sound.play("endgame3");
             }
         }
-        for (Enemy e : EntityArr.oneals) {
+        for (Enemy e : Management.oneals) {
             if (this.intersects(e)) {
                 e.setAlive(false);
             }
         }
-        for (Enemy e : EntityArr.dolls) {
+        for (Enemy e : Management.dolls) {
             if (this.intersects(e)) {
                 e.setAlive(false);
             }
         }
-        for (Enemy e : EntityArr.kondorias) {
+        for (Enemy e : Management.kondorias) {
             if (this.intersects(e)) {
                 e.setAlive(false);
             }
         }
         checkBomb();
-        if (this.intersects(EntityArr.bomberman))
-            EntityArr.bomberman.setAlive(false);
+        if (this.intersects(Management.bomberman))
+            Management.bomberman.setAlive(false);
         // Sound.play("endgame3");
     }
 
     @Override
     public boolean checkWall() {
-        for (Entity w : EntityArr.walls) {
+        for (Entity w : Management.walls) {
             if (this.getX() == w.getX() && this.getY() == w.getY()) {
                 this.setVisible(false);
                 return true;
@@ -53,7 +52,7 @@ public abstract class Flame extends Entity {
     }
 
     public boolean checkBrick() {
-        for (Brick b : EntityArr.bricks) {
+        for (Brick b : Management.bricks) {
             if (this.getX() == b.getX() && this.getY() == b.getY()) {
                 this.setVisible(false);
                 b.setBroken(true);
@@ -65,7 +64,7 @@ public abstract class Flame extends Entity {
 
     @Override
     public boolean checkBomb() {
-        for (Bomb bomb : EntityArr.bomberman.bombs) {
+        for (Bomb bomb : Management.bomberman.bombs) {
             if (this.intersects(bomb)) {
                 bomb.setExploded(true);
                 return true;

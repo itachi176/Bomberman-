@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class EntityArr {
+public class Management {
     public static List<Bomber> bombers = new ArrayList<>();
     public static List<Entity> grasses = new ArrayList<>();
     public static List<Entity> walls = new ArrayList<>();

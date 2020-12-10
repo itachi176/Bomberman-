@@ -2,7 +2,7 @@ package uet.oop.bomberman.entities.item;
 
 import javafx.scene.image.Image;
 import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.EntityArr;
+import uet.oop.bomberman.entities.Management;
 
 public abstract class Item extends Entity {
     protected int used = 0;
@@ -21,6 +21,6 @@ public abstract class Item extends Entity {
 
 
     protected boolean checkBoundBomber() {
-        return this.intersects(EntityArr.bomberman);
+        return this.intersects(Management.bomberman);
     }
 }

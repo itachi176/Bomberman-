@@ -56,25 +56,25 @@ public class BombermanGame extends Application {
 
         scene.setOnKeyPressed(keyEvent -> {
             if (keyEvent.getCode().toString().equals("LEFT")) {
-                EntityArr.bomberman.goLeft();
+                Management.bomberman.goLeft();
             }
             if (keyEvent.getCode().toString().equals("DOWN")) {
-                EntityArr.bomberman.goDown();
+                Management.bomberman.goDown();
             }
             if (keyEvent.getCode().toString().equals("UP")) {
-                EntityArr.bomberman.goUp();
+                Management.bomberman.goUp();
             }
             if (keyEvent.getCode().toString().equals("RIGHT")) {
-                EntityArr.bomberman.goRight();
+                Management.bomberman.goRight();
             }
             if (keyEvent.getCode().toString().equals("SPACE")) {
-                EntityArr.bomberman.putBomb();
+                Management.bomberman.putBomb();
             }
             if (keyEvent.getCode() == KeyCode.B) {
-                EntityArr.ballooms.clear();
+                Management.ballooms.clear();
             }
             if (keyEvent.getCode() == KeyCode.O) {
-                EntityArr.oneals.clear();
+                Management.oneals.clear();
             }
         });
 
@@ -82,38 +82,38 @@ public class BombermanGame extends Application {
 
 
     public void update() {
-        EntityArr.bomberman.update();
-        EntityArr.ballooms.forEach(Balloom::update);
-        EntityArr.oneals.forEach(Oneal::update);
-        EntityArr.dolls.forEach(Doll::update);
-        EntityArr.kondorias.forEach(Kondoria::update);
-        EntityArr.bomberman.bombs.forEach(Bomb::update);
-        EntityArr.bricks.forEach(Brick::update);
-        EntityArr.bomberman.bombs.forEach(g -> g.getUp().forEach(Flame::update));
-        EntityArr.bomberman.bombs.forEach(g -> g.getDown().forEach(Flame::update));
-        EntityArr.bomberman.bombs.forEach(g -> g.getLeft().forEach(Flame::update));
-        EntityArr.bomberman.bombs.forEach(g -> g.getRight().forEach(Flame::update));
-        EntityArr.items.forEach(item -> {
+        Management.bomberman.update();
+        Management.ballooms.forEach(Balloom::update);
+        Management.oneals.forEach(Oneal::update);
+        Management.dolls.forEach(Doll::update);
+        Management.kondorias.forEach(Kondoria::update);
+        Management.bomberman.bombs.forEach(Bomb::update);
+        Management.bricks.forEach(Brick::update);
+        Management.bomberman.bombs.forEach(g -> g.getUp().forEach(Flame::update));
+        Management.bomberman.bombs.forEach(g -> g.getDown().forEach(Flame::update));
+        Management.bomberman.bombs.forEach(g -> g.getLeft().forEach(Flame::update));
+        Management.bomberman.bombs.forEach(g -> g.getRight().forEach(Flame::update));
+        Management.items.forEach(item -> {
             if (item.isVisible()) item.update();
         });
-        EntityArr.bomberman.update();
-        EntityArr.portals.forEach(Entity::update);
+        Management.bomberman.update();
+        Management.portals.forEach(Entity::update);
     }
 
     public void render() {
         graphicsContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        EntityArr.grasses.forEach(g -> g.render(graphicsContext));
-        EntityArr.portals.forEach(g -> g.render(graphicsContext));
-        EntityArr.walls.forEach(g -> g.render(graphicsContext));
-        EntityArr.bricks.forEach(g -> g.render(graphicsContext));
-        EntityArr.ballooms.forEach(g -> g.render(graphicsContext));
-        EntityArr.oneals.forEach(g -> g.render(graphicsContext));
-        EntityArr.dolls.forEach(g -> g.render(graphicsContext));
-        EntityArr.kondorias.forEach(g -> g.render(graphicsContext));
-        EntityArr.bomberman.bombs.forEach(g -> g.render(graphicsContext));
-        EntityArr.bombers.forEach(g -> g.render(graphicsContext));
-        EntityArr.bomberman.bombs.forEach(g -> g.flames.forEach(g1 -> g1.render(graphicsContext)));
-        EntityArr.items.forEach(g -> {
+        Management.grasses.forEach(g -> g.render(graphicsContext));
+        Management.portals.forEach(g -> g.render(graphicsContext));
+        Management.walls.forEach(g -> g.render(graphicsContext));
+        Management.bricks.forEach(g -> g.render(graphicsContext));
+        Management.ballooms.forEach(g -> g.render(graphicsContext));
+        Management.oneals.forEach(g -> g.render(graphicsContext));
+        Management.dolls.forEach(g -> g.render(graphicsContext));
+        Management.kondorias.forEach(g -> g.render(graphicsContext));
+        Management.bomberman.bombs.forEach(g -> g.render(graphicsContext));
+        Management.bombers.forEach(g -> g.render(graphicsContext));
+        Management.bomberman.bombs.forEach(g -> g.flames.forEach(g1 -> g1.render(graphicsContext)));
+        Management.items.forEach(g -> {
             if (g.isVisible()) g.render(graphicsContext);
         });
 

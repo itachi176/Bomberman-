@@ -33,7 +33,7 @@ public class Brick extends Entity {
                         Item item = randomItem();
                         if (item != null) {
                             if (item != null) {
-                                EntityArr.items.add(item);
+                                Management.items.add(item);
                             }
                             item.setVisible(true);
                         }

@@ -1,7 +1,7 @@
 package uet.oop.bomberman.entities.item;
 
 import javafx.scene.image.Image;
-import uet.oop.bomberman.entities.EntityArr;
+import uet.oop.bomberman.entities.Management;
 import uet.oop.bomberman.graphics.Sprite;
 
 public class SpeedItem extends Item {
@@ -13,7 +13,7 @@ public class SpeedItem extends Item {
     public void update() {
         super.update();
         if (this.used == 1) {
-            EntityArr.bomberman.setSpeed(EntityArr.bomberman.getSpeed() + Sprite.DEFAULT_SIZE / 12);
+            Management.bomberman.setSpeed(Management.bomberman.getSpeed() + Sprite.DEFAULT_SIZE / 12);
         }
     }
 }
