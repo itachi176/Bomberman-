@@ -56,23 +56,21 @@ public abstract class Enemy extends Entity {
     protected void rdMove() {
         Random random = new Random();
         int num = random.nextInt(4);
-        switch (num) {
-            case 0:
-                this.speedX = this.getSpeed();
-                this.speedY = 0;
-                break;
-            case 1:
-                this.speedX = this.getSpeed() * -1;
-                this.speedY = 0;
-                break;
-            case 2:
-                this.speedY = this.getSpeed();
-                this.speedX = 0;
-                break;
-            case 3:
-                this.speedY = this.getSpeed() * -1;
-                this.speedX = 0;
-                break;
+        if (num == 0) {
+            this.speedX = this.getSpeed();
+            this.speedY = 0;
+        }
+        else if (num == 1) {
+            this.speedX = this.getSpeed() * -1;
+            this.speedY = 0;
+        }
+        else if (num == 2) {
+            this.speedY = this.getSpeed();
+            this.speedX = 0;
+        }
+        else {
+            this.speedY = this.getSpeed() * -1;
+            this.speedX = 0;
         }
     }
 
