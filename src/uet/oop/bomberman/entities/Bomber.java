@@ -9,22 +9,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bomber extends Entity {
+    public List<Bomb> bombs = new ArrayList<>();
     private int speed = Sprite.SCALED_SIZE / 6;
     private int flameLength = 1;
     private boolean isAlive = true;
     private int numBombs = 1;
     private int time = 0;
 
-    public List<Bomb> bombs = new ArrayList<>();
-
     public Bomber(int x, int y, Image img) {
-        super( x, y, img);
+        super(x, y, img);
     }
 
     @Override
     public void update() {
         this.animate += Sprite.DEFAULT_SIZE / 10;
-        if (!isAlive()){
+        if (!isAlive()) {
             this.setImg(Sprite.movingSprite(Sprite.player_dead1, Sprite.player_dead2
                     , Sprite.player_dead3, animate, Sprite.DEFAULT_SIZE).getFxImage());
         }
@@ -37,9 +36,10 @@ public class Bomber extends Entity {
             }
         }
     }
+
     public boolean checkPortal() {
         for (Entity portal : EntityArr.portals) {
-            if (EntityArr.balloms.size() != 0 || EntityArr.oneals.size() != 0) break;
+            if (EntityArr.ballooms.size() != 0 || EntityArr.oneals.size() != 0) break;
             if (this.intersects(portal)) {
                 return true;
             }
@@ -123,12 +123,12 @@ public class Bomber extends Entity {
         this.speed = speed;
     }
 
-    public void setAlive(boolean alive) {
-        isAlive = alive;
-    }
-
     public boolean isAlive() {
         return isAlive;
+    }
+
+    public void setAlive(boolean alive) {
+        isAlive = alive;
     }
 
     public int getNumBombs() {
@@ -166,7 +166,7 @@ public class Bomber extends Entity {
     public void putBomb() {
         int xBomb, yBomb;
         if (getX() % Sprite.SCALED_SIZE > Sprite.SCALED_SIZE / 3) {
-            xBomb = (getX() / Sprite.SCALED_SIZE)  + 1;
+            xBomb = (getX() / Sprite.SCALED_SIZE) + 1;
         } else {
             xBomb = (getX() / Sprite.SCALED_SIZE);
         }
@@ -179,7 +179,6 @@ public class Bomber extends Entity {
 
         if (!this.duplicateBomb(bomb)
                 && getNumBombs() >= this.bombs.size() + 1) {
-//            Sound.play("BOM_SET");
             this.bombs.add(bomb);
         }
     }

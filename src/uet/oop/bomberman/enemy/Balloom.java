@@ -3,8 +3,8 @@ package uet.oop.bomberman.enemy;
 import javafx.scene.image.Image;
 import uet.oop.bomberman.graphics.Sprite;
 
-public class Ballom extends Enemy {
-    public Ballom(int xUnit, int yUnit, Image img) {
+public class Balloom extends Enemy {
+    public Balloom(int xUnit, int yUnit, Image img) {
         super(xUnit, yUnit, img);
     }
 

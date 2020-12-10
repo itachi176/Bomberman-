@@ -1,7 +1,6 @@
 package uet.oop.bomberman.enemy;
 
 import javafx.scene.image.Image;
-import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.EntityArr;
 import uet.oop.bomberman.graphics.Sprite;
 
@@ -16,17 +15,15 @@ public class Kondoria extends Enemy {
         if (isAlive()) {
             int diffX = getX() - EntityArr.bomberman.getX();
             int diffY = getY() - EntityArr.bomberman.getY();
-            if (diffX > 0){
+            if (diffX > 0) {
                 this.x -= this.getSpeedX();
-            }
-            else {
+            } else {
                 this.x += this.getSpeedX();
             }
 
-            if (diffY > 0){
+            if (diffY > 0) {
                 this.y -= this.getSpeed();
-            }
-            else {
+            } else {
                 this.y += this.getSpeed();
             }
 

@@ -1,9 +1,7 @@
 package uet.oop.bomberman.bomb;
 
 import javafx.scene.image.Image;
-import uet.oop.bomberman.enemy.Ballom;
 import uet.oop.bomberman.enemy.Enemy;
-import uet.oop.bomberman.enemy.Oneal;
 import uet.oop.bomberman.entities.Brick;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.EntityArr;
@@ -43,7 +41,7 @@ public abstract class Flame extends Entity {
     }
 
     protected void checkEnemy() {
-        for (Enemy e : EntityArr.balloms) {
+        for (Enemy e : EntityArr.ballooms) {
             if (this.intersects(e)) {
                 e.setAlive(false);
             }

@@ -14,6 +14,7 @@ import java.util.TimerTask;
 public class Brick extends Entity {
     private boolean isBroken = false;
     private int timeBroken = 0;
+
     public Brick(int xUnit, int yUnit, Image img) {
         super(xUnit, yUnit, img);
     }
@@ -31,7 +32,7 @@ public class Brick extends Entity {
                     public void run() {
                         Item item = randomItem();
                         if (item != null) {
-                            if (item != null){
+                            if (item != null) {
                                 EntityArr.items.add(item);
                             }
                             item.setVisible(true);
@@ -44,11 +45,12 @@ public class Brick extends Entity {
         }
     }
 
-    public void setBroken(boolean broken) {
-        isBroken = broken;
-    }
     public boolean isBroken() {
         return isBroken;
+    }
+
+    public void setBroken(boolean broken) {
+        isBroken = broken;
     }
 
     private Item randomItem() {

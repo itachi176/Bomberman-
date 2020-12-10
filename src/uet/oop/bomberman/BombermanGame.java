@@ -11,22 +11,25 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import uet.oop.bomberman.bomb.Bomb;
-import uet.oop.bomberman.enemy.*;
-import uet.oop.bomberman.entities.*;
-import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.bomb.Flame;
+import uet.oop.bomberman.enemy.Balloom;
+import uet.oop.bomberman.enemy.Doll;
+import uet.oop.bomberman.enemy.Kondoria;
+import uet.oop.bomberman.enemy.Oneal;
+import uet.oop.bomberman.entities.Brick;
 import uet.oop.bomberman.entities.CreateMap;
+import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.entities.EntityArr;
+import uet.oop.bomberman.graphics.Sprite;
 
 public class BombermanGame extends Application {
 
     public static int level = 1;
-    public static  int WIDTH = 20;
-    public static  int HEIGHT = 15;
-    
+    public static int WIDTH = 20;
+    public static int HEIGHT = 15;
+
     private GraphicsContext gc;
     private Canvas canvas;
-
-
-//    public static Bomber bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
 
     public static void main(String[] args) {
         Application.launch(BombermanGame.class);
@@ -35,18 +38,14 @@ public class BombermanGame extends Application {
     @Override
     public void start(Stage stage) {
         CreateMap.createMapByLevel(1);
-        // Tao Canvas
         canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
         gc = canvas.getGraphicsContext2D();
 
-        // Tao root container
         Group root = new Group();
         root.getChildren().add(canvas);
 
-        // Tao scene
         Scene scene = new Scene(root);
 
-        // Them scene vao stage
         stage.setScene(scene);
         stage.show();
 
@@ -60,32 +59,27 @@ public class BombermanGame extends Application {
 
         timer.start();
 
-        //createMap();
-
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent keyEvent) {
-                if (keyEvent.getCode().toString().equals("LEFT")) {
-                    EntityArr.bomberman.goLeft();
-                }
-                if (keyEvent.getCode().toString().equals("DOWN")) {
-                    EntityArr.bomberman.goDown();
-                }
-                if (keyEvent.getCode().toString().equals("UP")) {
-                    EntityArr.bomberman.goUp();
-                }
-                if (keyEvent.getCode().toString().equals("RIGHT")) {
-                    EntityArr.bomberman.goRight();
-                }
-                if (keyEvent.getCode().toString().equals("SPACE")) {
-                    EntityArr.bomberman.putBomb();
-                }
-                if (keyEvent.getCode() == KeyCode.B) {
-                    EntityArr.balloms.clear();
-                }
-                if (keyEvent.getCode() == KeyCode.O) {
-                    EntityArr.oneals.clear();
-                }
+        scene.setOnKeyPressed(keyEvent -> {
+            if (keyEvent.getCode().toString().equals("LEFT")) {
+                EntityArr.bomberman.goLeft();
+            }
+            if (keyEvent.getCode().toString().equals("DOWN")) {
+                EntityArr.bomberman.goDown();
+            }
+            if (keyEvent.getCode().toString().equals("UP")) {
+                EntityArr.bomberman.goUp();
+            }
+            if (keyEvent.getCode().toString().equals("RIGHT")) {
+                EntityArr.bomberman.goRight();
+            }
+            if (keyEvent.getCode().toString().equals("SPACE")) {
+                EntityArr.bomberman.putBomb();
+            }
+            if (keyEvent.getCode() == KeyCode.B) {
+                EntityArr.ballooms.clear();
+            }
+            if (keyEvent.getCode() == KeyCode.O) {
+                EntityArr.oneals.clear();
             }
         });
     }
@@ -93,25 +87,21 @@ public class BombermanGame extends Application {
 
     public void update() {
         EntityArr.bomberman.update();
-        EntityArr.balloms.forEach(Ballom::update);
+        EntityArr.ballooms.forEach(Balloom::update);
         EntityArr.oneals.forEach(Oneal::update);
         EntityArr.dolls.forEach(Doll::update);
         EntityArr.kondorias.forEach(Kondoria::update);
         EntityArr.bomberman.bombs.forEach(Bomb::update);
         EntityArr.bricks.forEach(Brick::update);
-        // update flame
-        EntityArr.bomberman.bombs.forEach(g -> g.getfUp().forEach(g1 -> g1.update()));
-        EntityArr.bomberman.bombs.forEach(g -> g.getfDown().forEach(g1 -> g1.update()));
-        EntityArr.bomberman.bombs.forEach(g -> g.getfLeft().forEach(g1 -> g1.update()));
-        EntityArr.bomberman.bombs.forEach(g -> g.getfRight().forEach(g1 -> g1.update()));
+        EntityArr.bomberman.bombs.forEach(g -> g.getfUp().forEach(Flame::update));
+        EntityArr.bomberman.bombs.forEach(g -> g.getfDown().forEach(Flame::update));
+        EntityArr.bomberman.bombs.forEach(g -> g.getfLeft().forEach(Flame::update));
+        EntityArr.bomberman.bombs.forEach(g -> g.getfRight().forEach(Flame::update));
         EntityArr.items.forEach(g -> {
             if (g.isVisible()) g.update();
         });
-
         EntityArr.bomberman.update();
-//        EntityArr.enemies.forEach(Enemy::update);
-
-        EntityArr.portals.forEach(g -> g.update());
+        EntityArr.portals.forEach(Entity::update);
     }
 
     public void render() {
@@ -120,16 +110,13 @@ public class BombermanGame extends Application {
         EntityArr.portals.forEach(g -> g.render(gc));
         EntityArr.walls.forEach(g -> g.render(gc));
         EntityArr.bricks.forEach(g -> g.render(gc));
-        EntityArr.balloms.forEach(g -> g.render(gc));
+        EntityArr.ballooms.forEach(g -> g.render(gc));
         EntityArr.oneals.forEach(g -> g.render(gc));
         EntityArr.dolls.forEach(g -> g.render(gc));
         EntityArr.kondorias.forEach(g -> g.render(gc));
         EntityArr.bomberman.bombs.forEach(g -> g.render(gc));
         EntityArr.bombers.forEach(g -> g.render(gc));
         EntityArr.bomberman.bombs.forEach(g -> g.flames.forEach(g1 -> g1.render(gc)));
-//        EntityArr.enemies.forEach(g -> {
-//            if (g.isVisible()) g.render(gc);
-//        });
         EntityArr.items.forEach(g -> {
             if (g.isVisible()) g.render(gc);
         });

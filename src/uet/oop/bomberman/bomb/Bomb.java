@@ -11,20 +11,16 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Bomb extends Entity {
-    private int flameLength;
-
     private final List<Flame> fLeft = new ArrayList<>();
     private final List<Flame> fRight = new ArrayList<>();
     private final List<Flame> fUp = new ArrayList<>();
     private final List<Flame> fDown = new ArrayList<>();
     public boolean passThrough = true;
-
-
     public List<Flame> flames = new ArrayList<>();
-
+    public int timerEx = 0;
+    private int flameLength;
     private boolean isExploded = false;
 
-    public int timerEx = 0;
     public Bomb(int xUnit, int yUnit, Image img) {
         super(xUnit, yUnit, img);
     }
@@ -41,8 +37,7 @@ public class Bomb extends Entity {
                 this.timerEx++;
                 this.addFlame();
             }
-        }
-        else {
+        } else {
             if (this.timerEx == 0) {
                 this.timerEx++;
                 setTimeExploded();
@@ -55,10 +50,6 @@ public class Bomb extends Entity {
 
     public boolean isExploded() {
         return isExploded;
-    }
-
-    public int getfLength() {
-        return flameLength;
     }
 
     public void setExploded(boolean exploded) {
