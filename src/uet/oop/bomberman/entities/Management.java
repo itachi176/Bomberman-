@@ -43,10 +43,8 @@ public class Management {
     }
 
     public static void clearArr() {
-        items.clear();
         bombers.clear();
         grasses.clear();
-        bricks.clear();
         walls.clear();
 
         portals.clear();
@@ -54,6 +52,10 @@ public class Management {
         ballooms.clear();
         dolls.clear();
         kondorias.clear();
+        items.clear();
+        bricks.clear();
+
+
     }
 
 }

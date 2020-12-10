@@ -92,7 +92,7 @@ public class Bomb extends Entity {
                 };
                 if (!this.isExploded()) {
                     Timer timerEx = new Timer();
-                    timerEx.schedule(bombEx, 1500);
+                    timerEx.schedule(bombEx, 2000);
                     Sound.play("bom_no");
                 }
                 TimerTask removeFlame = new TimerTask() {
@@ -105,7 +105,7 @@ public class Bomb extends Entity {
                     }
                 };
                 Timer timer = new Timer();
-                timer.schedule(removeFlame, 2000L);
+                timer.schedule(removeFlame, 2500L);
             }
             this.animate += Sprite.DEFAULT_SIZE / 10;
             this.setImg(Sprite.movingSprite(Sprite.bomb, Sprite.bomb_1

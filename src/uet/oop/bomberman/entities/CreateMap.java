@@ -10,6 +10,7 @@ import uet.oop.bomberman.graphics.Sprite;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.Scanner;
 
 public class CreateMap {
     public static void createMapByLevel(int level) {
@@ -19,16 +20,17 @@ public class CreateMap {
         try {
             String path = "res/levels/Level" + level + ".txt";
             File file = new File(path);
-            FileReader fileReader = new FileReader(file);
-            BufferedReader buffReader = new BufferedReader(fileReader);
-            String line = buffReader.readLine().trim();
-            String[] str = line.split(" ");
-            Game.HEIGHT = Integer.parseInt(str[1]);
-            Game.WIDTH = Integer.parseInt(str[2]);
-            char[][] maps = new char[Game.HEIGHT][Game.WIDTH];
+            Scanner sc = new Scanner(file);
+//            sc.nextInt();
+            level = sc.nextInt();
+            Game.HEIGHT = sc.nextInt();
+            Game.WIDTH = sc.nextInt();
 
+
+            char[][] maps = new char[Game.HEIGHT][Game.WIDTH];
+            sc.nextLine();
             for (int i = 0; i < Game.HEIGHT; ++i) {
-                line = buffReader.readLine();
+                String line = sc.nextLine();
                 for (int j = 0; j < Game.WIDTH; ++j) {
                     maps[i][j] = line.charAt(j);
                 }
@@ -57,8 +59,7 @@ public class CreateMap {
                     }
                 }
             }
-            fileReader.close();
-            buffReader.close();
+            sc.close();
         } catch (Exception exception) {
             System.out.println("Error: " + exception);
         }
