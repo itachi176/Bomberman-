@@ -33,10 +33,6 @@ public abstract class Enemy extends Entity {
             EntityArr.bomberman.setAlive(false);
         }
     }
-    public void enemyDead() {
-        this.setImg(Sprite.movingSprite(Sprite.mob_dead1, Sprite.mob_dead2, Sprite.mob_dead3
-                , this.animate, Sprite.DEFAULT_SIZE).getFxImage());
-    }
 
     public void setSpeed(int speed) {
         this.speed = speed;
@@ -69,7 +65,7 @@ public abstract class Enemy extends Entity {
         this.speedY = speedY;
     }
 
-    protected void randomVector() {
+    protected void rdMove() {
         Random random = new Random();
         int num = random.nextInt(4);
         switch (num) {

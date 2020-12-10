@@ -20,7 +20,7 @@ public class Doll extends Enemy {
                     if (getY() % Sprite.SCALED_SIZE != 0) {
                         this.y -= this.getSpeedY();
                     }
-                    this.randomVector();
+                    this.rdMove();
                 }
             } else {
                 this.x += this.getSpeedX();
@@ -28,7 +28,7 @@ public class Doll extends Enemy {
                     if (getX() % Sprite.SCALED_SIZE != 0) {
                         this.x -= this.getSpeedX();
                     }
-                    this.randomVector();
+                    this.rdMove();
                 }
             }
 
