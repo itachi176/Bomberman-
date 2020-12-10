@@ -3,6 +3,7 @@ package uet.oop.bomberman.enemy;
 import javafx.scene.image.Image;
 import uet.oop.bomberman.entities.Management;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.sound.Sound;
 
 public class Kondoria extends Enemy {
     public Kondoria(int xUnit, int yUnit, Image img) {
@@ -37,6 +38,7 @@ public class Kondoria extends Enemy {
             }
         } else {
             this.img = Sprite.kondoria_dead.getFxImage();
+            Sound.play("enemydie");
         }
 
     }

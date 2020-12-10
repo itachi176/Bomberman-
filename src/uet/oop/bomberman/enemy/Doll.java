@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.Management;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.sound.Sound;
 
 public class Doll extends Enemy {
     public Doll(int xUnit, int yUnit, Image img) {
@@ -41,6 +42,7 @@ public class Doll extends Enemy {
             }
         } else {
             this.img = Sprite.doll_dead.getFxImage();
+            Sound.play("enemydie");
         }
 
     }

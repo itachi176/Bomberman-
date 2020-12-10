@@ -27,7 +27,7 @@ public class Balloom extends Enemy {
             }
         } else {
             this.img = Sprite.balloom_dead.getFxImage();
-            Sound.play("noooooo");
+            Sound.play("enemydie");
         }
     }
 

@@ -44,7 +44,7 @@ public class Oneal extends Enemy {
             }
         } else {
             this.img = Sprite.oneal_dead.getFxImage();
-            Sound.play("noooooo");
+            Sound.play("enemydie");
         }
 
     }

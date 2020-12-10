@@ -16,6 +16,7 @@ import uet.oop.bomberman.enemy.Kondoria;
 import uet.oop.bomberman.enemy.Oneal;
 import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.sound.Sound;
 
 public class BombermanGame extends Application {
 
@@ -51,6 +52,8 @@ public class BombermanGame extends Application {
                 update();
             }
         };
+
+        Sound.play("nhacnen");
 
         timer.start();
 
