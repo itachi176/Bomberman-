@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.bomb.Bomb;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.sound.Sound;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,13 +27,16 @@ public class Bomber extends Entity {
         if (!isAlive()) {
             this.setImg(Sprite.movingSprite(Sprite.player_dead1, Sprite.player_dead2
                     , Sprite.player_dead3, animate, Sprite.DEFAULT_SIZE).getFxImage());
+           // Sound.play("AA126_11");
+            EntityArr.clearArr();
+            CreateMap.createMapByLevel(BombermanGame.level);
         }
         if (checkPortal()) {
             if (this.time == 0) {
                 this.time++;
                 BombermanGame.level++;
-                System.out.println(BombermanGame.level);
-                CreateMap.createMapByLevel(BombermanGame.level);
+                //System.out.println(BombermanGame.level);
+                CreateMap.createMapByLevel(2);
             }
         }
     }

@@ -43,13 +43,17 @@ public class EntityArr {
     }
 
     public static void clearArr() {
+        items.clear();
         bombers.clear();
         grasses.clear();
         bricks.clear();
         walls.clear();
-        items.clear();
+
         portals.clear();
         oneals.clear();
         ballooms.clear();
+        dolls.clear();
+        kondorias.clear();
     }
+
 }

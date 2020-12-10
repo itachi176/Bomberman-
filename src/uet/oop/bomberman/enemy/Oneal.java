@@ -2,6 +2,7 @@ package uet.oop.bomberman.enemy;
 
 import javafx.scene.image.Image;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.sound.Sound;
 
 import java.util.Random;
 
@@ -43,6 +44,7 @@ public class Oneal extends Enemy {
             }
         } else {
             this.img = Sprite.oneal_dead.getFxImage();
+            Sound.play("noooooo");
         }
 
     }
