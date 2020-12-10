@@ -18,7 +18,7 @@ import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.sound.Sound;
 
-public class BombermanGame extends Application {
+public class Game extends Application {
 
     public static int level = 1;
     public static int WIDTH = 20;
@@ -28,7 +28,7 @@ public class BombermanGame extends Application {
     private Canvas canvas;
 
     public static void main(String[] args) {
-        Application.launch(BombermanGame.class);
+        Application.launch(Game.class);
     }
 
     @Override
@@ -92,10 +92,10 @@ public class BombermanGame extends Application {
         Management.kondorias.forEach(Kondoria::update);
         Management.bomberman.bombs.forEach(Bomb::update);
         Management.bricks.forEach(Brick::update);
-        Management.bomberman.bombs.forEach(g -> g.getUp().forEach(Flame::update));
-        Management.bomberman.bombs.forEach(g -> g.getDown().forEach(Flame::update));
-        Management.bomberman.bombs.forEach(g -> g.getLeft().forEach(Flame::update));
-        Management.bomberman.bombs.forEach(g -> g.getRight().forEach(Flame::update));
+        Management.bomberman.bombs.forEach(bomb -> bomb.getUp().forEach(Flame::update));
+        Management.bomberman.bombs.forEach(bomb -> bomb.getDown().forEach(Flame::update));
+        Management.bomberman.bombs.forEach(bomb -> bomb.getLeft().forEach(Flame::update));
+        Management.bomberman.bombs.forEach(bomb -> bomb.getRight().forEach(Flame::update));
         Management.items.forEach(item -> {
             if (item.isVisible()) item.update();
         });

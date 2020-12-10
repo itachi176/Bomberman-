@@ -1,5 +1,5 @@
 package uet.oop.bomberman.sound;
-import uet.oop.bomberman.BombermanGame;
+import uet.oop.bomberman.Game;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -12,7 +12,7 @@ public class Sound {
                 try {
                     Clip clip = AudioSystem.getClip();
                     AudioInputStream inputStream = AudioSystem.getAudioInputStream(
-                            BombermanGame.class.getResourceAsStream("/sound/" + sound + ".wav"));
+                            Game.class.getResourceAsStream("/sound/" + sound + ".wav"));
                     clip.open(inputStream);
                     clip.start();
                 } catch (Exception e) {
@@ -28,7 +28,7 @@ public class Sound {
                 try {
                     Clip clip = AudioSystem.getClip();
                     AudioInputStream inputStream = AudioSystem.getAudioInputStream(
-                            BombermanGame.class.getResourceAsStream("/sound/" + sound + ".wav"));
+                            Game.class.getResourceAsStream("/sound/" + sound + ".wav"));
                     clip.open(inputStream);
                     clip.stop();
                 } catch (Exception e) {
