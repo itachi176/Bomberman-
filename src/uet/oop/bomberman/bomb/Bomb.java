@@ -78,8 +78,8 @@ public class Bomb extends Entity {
 
     public void addFlame() {
         Flame flame;
-        for (int i = 0; i < flameLength; ++i) {
-            flame = new FlameV(getX() / Sprite.SCALED_SIZE, getY() / Sprite.SCALED_SIZE + 1 + i
+        for (int i = 0; i <= flameLength; ++i) {
+            flame = new FlameV(getX() / Sprite.SCALED_SIZE, getY() / Sprite.SCALED_SIZE + i
                     , Sprite.explosion_vertical.getFxImage());
             if (!flame.checkBrick() && !flame.checkWall()) {
                 fDown.add(flame);
@@ -89,8 +89,8 @@ public class Bomb extends Entity {
             }
         }
 
-        for (int i = 0; i < flameLength; ++i) {
-            flame = new FlameV(getX() / Sprite.SCALED_SIZE, getY() / Sprite.SCALED_SIZE - 1 - i
+        for (int i = 0; i <= flameLength; ++i) {
+            flame = new FlameV(getX() / Sprite.SCALED_SIZE, getY() / Sprite.SCALED_SIZE - i
                     , Sprite.explosion_vertical.getFxImage());
             if (!flame.checkBrick() && !flame.checkWall()) {
                 fUp.add(flame);
@@ -100,8 +100,8 @@ public class Bomb extends Entity {
             }
         }
 
-        for (int i = 0; i < flameLength; ++i) {
-            flame = new FlameH(getX() / Sprite.SCALED_SIZE + i + 1, getY() / Sprite.SCALED_SIZE
+        for (int i = 0; i <= flameLength; ++i) {
+            flame = new FlameH(getX() / Sprite.SCALED_SIZE + i, getY() / Sprite.SCALED_SIZE
                     , Sprite.explosion_horizontal.getFxImage());
             if (!flame.checkBrick() && !flame.checkWall()) {
                 fRight.add(flame);
@@ -111,8 +111,8 @@ public class Bomb extends Entity {
             }
         }
 
-        for (int i = 0; i < flameLength; ++i) {
-            flame = new FlameH(getX() / Sprite.SCALED_SIZE - i - 1, getY() / Sprite.SCALED_SIZE
+        for (int i = 0; i <= flameLength; ++i) {
+            flame = new FlameH(getX() / Sprite.SCALED_SIZE - i, getY() / Sprite.SCALED_SIZE
                     , Sprite.explosion_horizontal.getFxImage());
             if (!flame.checkBrick() && !flame.checkWall()) {
                 fLeft.add(flame);
@@ -121,6 +121,8 @@ public class Bomb extends Entity {
                 break;
             }
         }
+//        this.flames.add(new FlameH(getX() / Sprite.SCALED_SIZE, getY() / Sprite.SCALED_SIZE
+//                    , Sprite.explosion_horizontal.getFxImage()));
     }
 
     public void setTimeExploded() {
