@@ -30,11 +30,26 @@ public class Brick extends Entity {
                 TimerTask createItem = new TimerTask() {
                     @Override
                     public void run() {
-                        Item item = randomItem();
+                        Item item;
+                        Random random = new Random();
+                        int num = random.nextInt(10);
+                        if (num == 1) {
+                            item = new BombItem(x / Sprite.SCALED_SIZE, y / Sprite.SCALED_SIZE
+                                    , Sprite.powerup_bombs.getFxImage());
+                        }
+                        else if (num == 2) {
+                            item = new FameItem(x / Sprite.SCALED_SIZE, y / Sprite.SCALED_SIZE
+                                    , Sprite.powerup_flames.getFxImage());
+                        }
+                        else if (num == 3) {
+                            item = new SpeedItem(x / Sprite.SCALED_SIZE, y / Sprite.SCALED_SIZE
+                                    , Sprite.powerup_speed.getFxImage());
+                        }
+                        else {
+                            item = null;
+                        }
                         if (item != null) {
-                            if (item != null) {
-                                Management.items.add(item);
-                            }
+                            Management.items.add(item);
                             item.setVisible(true);
                         }
                     }
@@ -51,23 +66,5 @@ public class Brick extends Entity {
 
     public void setBroken(boolean broken) {
         isBroken = broken;
-    }
-
-    private Item randomItem() {
-        Random random = new Random();
-        int num = random.nextInt(10);
-        switch (num) {
-            case 1:
-                return new BombItem(x / Sprite.SCALED_SIZE, y / Sprite.SCALED_SIZE
-                        , Sprite.powerup_bombs.getFxImage());
-            case 2:
-                return new FameItem(x / Sprite.SCALED_SIZE, y / Sprite.SCALED_SIZE
-                        , Sprite.powerup_flames.getFxImage());
-            case 3:
-                return new SpeedItem(x / Sprite.SCALED_SIZE, y / Sprite.SCALED_SIZE
-                        , Sprite.powerup_speed.getFxImage());
-            default:
-                return null;
-        }
     }
 }

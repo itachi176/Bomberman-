@@ -7,9 +7,7 @@ import uet.oop.bomberman.enemy.Kondoria;
 import uet.oop.bomberman.enemy.Oneal;
 import uet.oop.bomberman.graphics.Sprite;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.util.Scanner;
 
 public class CreateMap {
