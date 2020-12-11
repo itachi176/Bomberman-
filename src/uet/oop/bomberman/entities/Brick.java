@@ -21,6 +21,7 @@ public class Brick extends Entity {
 
     @Override
     public void update() {
+        //random item duoi cac bick.
         if (isBroken) {
             this.animate += Sprite.DEFAULT_SIZE / 10;
             this.setImg(Sprite.movingSprite(Sprite.brick_exploded, Sprite.brick_exploded1
@@ -32,7 +33,7 @@ public class Brick extends Entity {
                     public void run() {
                         Item item;
                         Random random = new Random();
-                        int num = random.nextInt(4);
+                        int num = random.nextInt(10);
                         if (num == 1) {
                             item = new BombItem(x / Sprite.SCALED_SIZE, y / Sprite.SCALED_SIZE
                                     , Sprite.powerup_bombs.getFxImage());
@@ -52,7 +53,7 @@ public class Brick extends Entity {
                     }
                 };
                 Timer timer = new Timer();
-                timer.schedule(createItem, 400L);
+                timer.schedule(createItem, 300L);
             }
         }
     }

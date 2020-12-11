@@ -5,6 +5,9 @@ import uet.oop.bomberman.graphics.Sprite;
 
 public class FlameHorizontal extends Flame {
 
+    /**
+     *flame ngang.
+     */
     public FlameHorizontal(int xUnit, int yUnit, Image img) {
         super(xUnit, yUnit, img);
     }

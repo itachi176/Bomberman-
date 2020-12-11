@@ -72,6 +72,9 @@ public abstract class Entity {
         return false;
     }
 
+    /**
+     * check va cham voi bom.
+     */
     public boolean checkBomb() {
         for (Entity e : Management.bomberman.bombs) {
             if (this.intersects(e)) return true;
@@ -79,6 +82,9 @@ public abstract class Entity {
         return false;
     }
 
+    /**
+     * check va cham voi tuong.
+     */
     public boolean checkWall() {
         for (Entity e : Management.walls) {
             if (this.intersects(e)) return true;
@@ -86,6 +92,9 @@ public abstract class Entity {
         return false;
     }
 
+    /**
+     * check va cham voi gach.
+     */
     public boolean checkBrick() {
         for (Entity e : Management.bricks) {
             if (this.intersects(e)) return true;

@@ -12,6 +12,7 @@ public class Balloom extends Enemy {
     @Override
     public void update() {
         super.update();
+        //xet di chuyen cua ballom.
         if (isAlive()) {
             if (this.getSpeed() > 0) {
                 this.x += this.getSpeed();
@@ -23,10 +24,10 @@ public class Balloom extends Enemy {
                         , Sprite.balloom_left3, this.animate, Sprite.DEFAULT_SIZE).getFxImage();
             }
             if (checkBounds() || checkBomb()) {
-                this.setSpeed(getSpeed() * -1);
+                this.setSpeed(getSpeed() * -1);//quay lai
             }
         } else {
-            this.img = Sprite.balloom_dead.getFxImage();
+            this.img = Sprite.balloom_dead.getFxImage();//cap nhat hoat anh chet cua ballom
             Sound.play("enemydie");
         }
     }

@@ -15,6 +15,7 @@ public class Oneal extends Enemy {
     public void update() {
         super.update();
         if (isAlive()) {
+            // di chuyen kieu random, co do kho > balloom.
             Random random = new Random();
             int num = random.nextInt(2);
             if (this.getSpeedX() == 0) {

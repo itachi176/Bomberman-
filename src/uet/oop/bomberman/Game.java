@@ -33,6 +33,7 @@ public class Game extends Application {
 
     @Override
     public void start(Stage stage) {
+        //tao map
         CreateMap.createMapByLevel(1);
         canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
         graphicsContext = canvas.getGraphicsContext2D();
@@ -57,6 +58,9 @@ public class Game extends Application {
 
         timer.start();
 
+        /**
+         * dieu khien di chuyen bomber.
+         */
         scene.setOnKeyPressed(keyEvent -> {
             if (keyEvent.getCode().toString().equals("LEFT")) {
                 Management.bomberman.goLeft();
@@ -103,6 +107,9 @@ public class Game extends Application {
         Management.portals.forEach(Entity::update);
     }
 
+    /**
+     * ve map.
+     */
     public void render() {
         graphicsContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         Management.grasses.forEach(grass -> grass.render(graphicsContext));

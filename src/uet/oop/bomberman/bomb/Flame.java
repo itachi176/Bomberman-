@@ -16,7 +16,6 @@ public abstract class Flame extends Entity {
         for (Enemy e : Management.ballooms) {
             if (this.intersects(e)) {
                 e.setAlive(false);
-                //Sound.play("endgame3");
             }
         }
         for (Enemy e : Management.oneals) {
@@ -37,7 +36,6 @@ public abstract class Flame extends Entity {
         checkBomb();
         if (this.intersects(Management.bomberman))
             Management.bomberman.setAlive(false);
-        // Sound.play("endgame3");
     }
 
     @Override
@@ -51,6 +49,10 @@ public abstract class Flame extends Entity {
         return false;
     }
 
+    /**
+     * xet khi bom no trung gach thi setbroken=true.
+     * @return
+     */
     public boolean checkBrick() {
         for (Brick b : Management.bricks) {
             if (this.getX() == b.getX() && this.getY() == b.getY()) {
@@ -62,6 +64,10 @@ public abstract class Flame extends Entity {
         return false;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public boolean checkBomb() {
         for (Bomb bomb : Management.bomberman.bombs) {

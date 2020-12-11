@@ -14,6 +14,7 @@ public abstract class Item extends Entity {
 
     @Override
     public void update() {
+
         if (this.isVisible() && this.checkBoundBomber()) {
             this.setVisible(false);
             this.used++;

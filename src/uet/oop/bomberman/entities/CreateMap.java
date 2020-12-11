@@ -11,6 +11,10 @@ import java.io.File;
 import java.util.Scanner;
 
 public class CreateMap {
+    /**
+     * tao map theo cac level bang cach doc file txt.
+     * @param level
+     */
     public static void createMapByLevel(int level) {
         Management.clear();
         Management.bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());

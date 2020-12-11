@@ -11,6 +11,7 @@ public class Doll extends Enemy {
         super(xUnit, yUnit, img);
     }
 
+    //di chuyen con doll qua tuong + random huong di de tang do kho cho game.
     @Override
     public void update() {
         super.update();
@@ -47,6 +48,10 @@ public class Doll extends Enemy {
 
     }
 
+    /**
+     * sua de cho no di xuyen tuong.
+     * @return
+     */
     @Override
     public boolean checkBounds() {
         for (Entity e : Management.walls) {

@@ -59,7 +59,7 @@ public class Bomb extends Entity {
                     }
                 }
 
-                for (int i = 0; i <= flameLength; ++i) {
+                for (int i = 0; i <= flameLength; i++) {
                     flame = new FlameHorizontal(getX() / Sprite.SCALED_SIZE + i, getY() / Sprite.SCALED_SIZE
                             , Sprite.explosion_horizontal.getFxImage());
                     if (!flame.checkBrick() && !flame.checkWall()) {
@@ -70,7 +70,7 @@ public class Bomb extends Entity {
                     }
                 }
 
-                for (int i = 0; i <= flameLength; ++i) {
+                for (int i = 0; i <= flameLength; i++) {
                     flame = new FlameHorizontal(getX() / Sprite.SCALED_SIZE - i, getY() / Sprite.SCALED_SIZE
                             , Sprite.explosion_horizontal.getFxImage());
                     if (!flame.checkBrick() && !flame.checkWall()) {

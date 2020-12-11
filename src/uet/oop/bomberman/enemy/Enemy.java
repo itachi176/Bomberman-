@@ -53,6 +53,9 @@ public abstract class Enemy extends Entity {
         return speedY;
     }
 
+    /**
+     * random huong di chuyen cho da dang.
+     */
     protected void rdMove() {
         Random random = new Random();
         int num = random.nextInt(4);

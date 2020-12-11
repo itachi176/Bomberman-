@@ -14,6 +14,7 @@ public class Kondoria extends Enemy {
     public void update() {
         super.update();
         if (isAlive()) {
+            //xet di chuyen cua con quai cho no duoi theo.
             int diffX = getX() - Management.bomberman.getX();
             int diffY = getY() - Management.bomberman.getY();
             if (diffX > 0) {

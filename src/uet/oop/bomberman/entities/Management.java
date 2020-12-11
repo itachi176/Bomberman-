@@ -24,6 +24,9 @@ public class Management {
     public static List<Flame> flames = new ArrayList<>();
     public static Bomber bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
 
+    /**
+     * xoa cac vat the.
+     */
     public static void removeEnemy() {
         ballooms.removeIf(balloom -> !balloom.isAlive());
 
@@ -37,14 +40,23 @@ public class Management {
 
     }
 
+    /**
+     * xoa tuong sau khi va cham flame.
+     */
     public static void removeBrick() {
         bricks.removeIf(Brick::isBroken);
     }
 
+    /**
+     * xoa bom sau khi no.
+     */
     public static void removeBomb() {
         bomberman.bombs.removeIf(Bomb::isExploded);
     }
 
+    /**
+     * xoa tat ca neu chet de tao map moi.
+     */
     public static void clear() {
         bombers.clear();
         grasses.clear();
