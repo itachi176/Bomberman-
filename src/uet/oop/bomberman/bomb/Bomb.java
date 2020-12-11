@@ -111,6 +111,7 @@ public class Bomb extends Entity {
             this.setImg(Sprite.movingSprite(Sprite.bomb, Sprite.bomb_1
                     , Sprite.bomb_2, animate, Sprite.DEFAULT_SIZE).getFxImage());
         }
+
     }
 
     public boolean isExploded() {
@@ -135,5 +136,9 @@ public class Bomb extends Entity {
 
     public List<Flame> getUp() {
         return up;
+    }
+
+    public void clearf() {
+        flames.clear();
     }
 }

@@ -32,7 +32,7 @@ public class Brick extends Entity {
                     public void run() {
                         Item item;
                         Random random = new Random();
-                        int num = random.nextInt(10);
+                        int num = random.nextInt(4);
                         if (num == 1) {
                             item = new BombItem(x / Sprite.SCALED_SIZE, y / Sprite.SCALED_SIZE
                                     , Sprite.powerup_bombs.getFxImage());

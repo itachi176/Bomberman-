@@ -10,12 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bomber extends Entity {
+
     public List<Bomb> bombs = new ArrayList<>();
-    private int speed = Sprite.SCALED_SIZE / 6;
+    private int speed = Sprite.SCALED_SIZE / 5;
     private int flameLength = 1;
     public boolean isAlive = true;
     private int numBombs = 1;
-    private int time = 0;
 
     public Bomber(int x, int y, Image img) {
         super(x, y, img);
@@ -24,19 +24,32 @@ public class Bomber extends Entity {
     @Override
     public void update() {
         this.animate += Sprite.DEFAULT_SIZE / 10;
-        if (!isAlive()) {
+        if (Management.bombers.removeIf(bomber -> !isAlive())) {
             this.setImg(Sprite.movingSprite(Sprite.player_dead1, Sprite.player_dead2
                     , Sprite.player_dead3, animate, Sprite.DEFAULT_SIZE).getFxImage());
-//             Management.clear();
-//            CreateMap.createMapByLevel(Game.level);
+            Management.clear();
+            CreateMap.createMapByLevel(Game.level);
+            Sound.play("bomberdie");
         }
+
+//        if( Management.bombers.removeIf(bomber -> !isAlive())) {
+//            Sound.play("AA126_11");
+//        }
+
+
+
         if (checkPortal()) {
-            if (this.time == 0) {
-                this.time++;
-                Game.level++;
-                CreateMap.createMapByLevel(2);
-            }
+
+            Game.level++;
+            Sound.play("quaman");
+            CreateMap.createMapByLevel(2);
+
         }
+
+        if (Management.bombers.removeIf(bomber -> !bomber.isAlive())) {
+            CreateMap.createMapByLevel(Game.level);
+        }
+
     }
 
     public boolean checkPortal() {

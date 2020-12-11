@@ -1,6 +1,7 @@
 package uet.oop.bomberman.entities;
 
 import uet.oop.bomberman.bomb.Bomb;
+import uet.oop.bomberman.bomb.Flame;
 import uet.oop.bomberman.enemy.*;
 import uet.oop.bomberman.entities.item.Item;
 import uet.oop.bomberman.graphics.Sprite;
@@ -20,6 +21,7 @@ public class Management {
     public static List<Kondoria> kondorias = new ArrayList<>();
     public static List<Item> items = new ArrayList<>();
     public static List<Enemy> enemies = new ArrayList<>();
+    public static List<Flame> flames = new ArrayList<>();
     public static Bomber bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
 
     public static void removeEnemy() {
@@ -54,6 +56,7 @@ public class Management {
         kondorias.clear();
         items.clear();
         bricks.clear();
+
     }
 
 }
